@@ -29,10 +29,10 @@ class ButtonSpec extends React.Component
     runThrough = (obj) ->
       for key, value of obj
         if typeof value is 'function'
-          <div onClick={ value }>{ key }</div>
+          <div onClick={ value } key={ key }>{ key }</div>
         else
-          <div>
-            <div>{ key }</div>
+          <div key={ 'foo' }>
+            <div key={ key }>{ key }</div>
             <div style={ paddingLeft: '15px' }>{ runThrough(value) }</div>
           </div>
 

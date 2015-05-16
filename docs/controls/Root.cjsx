@@ -17,7 +17,7 @@ class Root extends React.Component
     <div style={ fontFamily: 'Roboto', display: 'flex', justifyContent: 'space-between', alignItems: 'stretch', position: 'absolute', top: '0', left: '0', bottom: '0', right: '0' }>
       <div style={ flexBasis: '200', background: '#eee' }>
         { for name, specComponent of specs
-            <div>{ name }</div> }
+            <div key={ name }>{ name }</div> }
       </div>
 
       { React.createElement( specs[ @state.active ] ) }
