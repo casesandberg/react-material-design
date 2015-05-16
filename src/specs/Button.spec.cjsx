@@ -15,6 +15,7 @@ class ButtonSpec extends React.Component
       label: 'Spec Button'
       background: '#2196f3'
 
+  # statics: {}
   describe: ->
     'type':
       'raised (default)': => @setState( type: 'raised' )
@@ -30,6 +31,10 @@ class ButtonSpec extends React.Component
       '0': => @setState( zDepth: '0' )
       '1': => @setState( zDepth: '1' )
       '2': => @setState( zDepth: '2' )
+      '3': => @setState( zDepth: '3' )
+      '4': => @setState( zDepth: '4' )
+      '5': => @setState( zDepth: '5' )
+      # '6': => @setState( zDepth: '6' )
 
   render: ->
     runThrough = (obj) ->

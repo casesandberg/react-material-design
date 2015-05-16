@@ -76,7 +76,7 @@ css.inline = function(declaredClasses) {
         });
       }
     } else {
-      console.warn("You shouldnt be defining CSS for children components in `" + this.constructor.displayName + "`, please pass down a class name instead.");
+      // console.warn("You shouldnt be defining CSS for children components in `" + this.constructor.displayName + "`, please pass down a class name instead.");
       arrayOfStyles.push((
         obj = {},
         obj["" + key] = value,

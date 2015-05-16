@@ -39,7 +39,7 @@ css.inline = (declaredClasses) ->
       pushStyle(name, warn:true) for name in value.split(' ')
 
     else
-      console.warn "You shouldnt be defining CSS for children components in `#{ @constructor.displayName }`, please pass down a class name instead."
+      # console.warn "You shouldnt be defining CSS for children components in `#{ @constructor.displayName }`, please pass down a class name instead."
       arrayOfStyles.push({ "#{ key }": value })
 
   return _css(arrayOfStyles)
