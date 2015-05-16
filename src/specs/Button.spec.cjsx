@@ -1,6 +1,7 @@
 'use strict'
 
 React = require('react')
+uuid = require('uuid')
 
 Button = require('../components/Button')
 
@@ -25,13 +26,18 @@ class ButtonSpec extends React.Component
     'theme: blue': => @setState( type: 'raised', background: '#2196f3', color: '#fff' )
     'theme: white flat': => @setState( type: 'flat', color: '#333' )
 
+    'zDepth':
+      '0': => @setState( zDepth: '0' )
+      '1': => @setState( zDepth: '1' )
+      '2': => @setState( zDepth: '2' )
+
   render: ->
     runThrough = (obj) ->
       for key, value of obj
         if typeof value is 'function'
           <div onClick={ value } key={ key }>{ key }</div>
         else
-          <div key={ 'foo' }>
+          <div key={ uuid.v4() }>
             <div key={ key }>{ key }</div>
             <div style={ paddingLeft: '15px' }>{ runThrough(value) }</div>
           </div>

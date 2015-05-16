@@ -33,6 +33,9 @@ class Button extends React.Component
 
 
   render: ->
+    # if @props.type is 'flat' and @props.zDepth? and @props.zDepth isnt '0'
+    #   console.log '`Button` components that have a type of `flat` should not have a `zDepth`'
+
     <Raised background={ @props.background if @props.type isnt 'flat' } zDepth={ if @props.type is 'flat' then '0' else @props.zDepth }>
       { if @props.type isnt 'floating-action'
           <div is="button">{ @props.label }</div>
