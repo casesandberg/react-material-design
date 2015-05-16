@@ -20,13 +20,7 @@ class Root extends React.Component
             <div>{ name }</div> }
       </div>
 
-      <div style={ alignSelf: 'center' }>
-        { React.createElement( specs[ @state.active ] ) }
-      </div>
-
-      <div style={ flexBasis: '200', background: '#ddd' }>
-        controls
-      </div>
+      { React.createElement( specs[ @state.active ] ) }
 
     </div>
 

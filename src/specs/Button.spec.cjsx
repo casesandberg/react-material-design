@@ -14,10 +14,18 @@ class ButtonSpec extends React.Component
       label: 'Spec Button'
 
   describe: ->
-    it 'label: foo', -> @setState( label: 'foo' )
+    'label: foo': => @setState( label: 'foo' )
 
   render: ->
-    <Button {...@state } />
+    <div style={ display: 'flex', justifyContent: 'space-between', position: 'absolute', top: '0', left: '220px', bottom: '0', right: '0' }>
+      <div style={ alignSelf: 'center' }>
+        <Button {...@state } />
+      </div>
+      <div style={ flexBasis: '200', background: '#ddd' }>
+        { for label, func of @describe()
+            <div onClick={ func }>{ label }</div> }
+      </div>
+    </div>
 
 
 
