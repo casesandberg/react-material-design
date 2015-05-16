@@ -1,0 +1,34 @@
+{
+  "name": "react-material-design",
+  "version": "0.0.0",
+  "description": "1 part React to 2 parts Material Design. Mix.",
+  "main": "lib/index.coffee",
+  "scripts": {
+    "start": "npm install; node ./node_modules/gulp/bin/gulp.js start"
+  },
+  "author": {
+    "name": "case sandberg",
+    "email": "case@casesandberg.com"
+  },
+  "repository": "https://github.com/casesandberg/react-material-design",
+  "license": "MIT",
+  "dependencies": {
+    "coffee-script": "^1.9.2",
+    "normalize.css": "^3.0.3",
+    "react": "^0.13.3"
+  },
+  "devDependencies": {
+    "coffee-jsx-loader": "^0.1.0",
+    "coffee-loader": "^0.7.2",
+    "coffee-react": "^2.1.2",
+    "css-loader": "^0.12.1",
+    "gulp": "^3.8.11",
+    "gulp-cjsx": "^3.0.0",
+    "gulp-coffee": "^2.3.1",
+    "gulp-rename": "^1.2.2",
+    "node-libs-browser": "^0.5.0",
+    "react-hot-loader": "^1.2.7",
+    "webpack": "^1.9.5",
+    "webpack-dev-server": "^1.8.2"
+  }
+}
