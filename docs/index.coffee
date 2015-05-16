@@ -13,8 +13,6 @@ Root = require('./controls/Root')
 # for name, specComponent of specs
 #   console.log name
 
-console.log 'YEP'
-
 React.render(
   React.createElement(Root),
   document.getElementById('root')
