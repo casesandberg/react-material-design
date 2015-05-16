@@ -1,0 +1,24 @@
+{
+  "name": "react-css",
+  "version": "0.0.0",
+  "main": "lib/react-css.js",
+  "dependencies": {
+    "lodash": "^3.6.0",
+    "merge": "^1.2.0"
+  },
+  "devDependencies": {
+    "amd-optimize": "^0.4.3",
+    "chai": "^2.2.0",
+    "coffee-script": "^1.9.1",
+    "gulp": "^3.8.11",
+    "gulp-coffee": "^2.3.1",
+    "gulp-concat": "^2.5.2",
+    "gulp-mocha": "^2.0.1",
+    "mocha": "^2.2.1",
+    "react": "^0.13.1"
+  },
+  "scripts": {
+    "test": "mocha --compilers coffee:coffee-script/register",
+    "tdd": "mocha --compilers coffee:coffee-script/register --watch"
+  }
+}

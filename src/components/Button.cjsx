@@ -35,9 +35,9 @@ class Button extends React.Component
   render: ->
     <Raised background={ @props.background if @props.type isnt 'flat' } zDepth={ if @props.type is 'flat' then '0' else @props.zDepth }>
       { if @props.type isnt 'floating-action'
-          <div style={ @styles().button }>{ @props.label }</div>
+          <div is="button">{ @props.label }</div>
         else
-          <div style={ @styles().action }> + </div> }
+          <div is="action"> + </div> }
 
     </Raised>
 

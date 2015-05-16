@@ -28,7 +28,7 @@ var config = {
           loaders: ['coffee-loader']
         }, {
           test: /\.cjsx$/,
-          loaders: ['react-hot-loader', 'coffee-jsx-loader']
+          loaders: ['react-hot-loader',  path.join(__dirname, 'modules', 'react-is-loader'), 'coffee-jsx-loader']
         }, {
           test: /\.css$/,
           loaders: ['css-loader']
