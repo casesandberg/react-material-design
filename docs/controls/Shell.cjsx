@@ -5,6 +5,7 @@ css = require('react-css')
 uuid = require('uuid')
 
 Tile = require('../../src/components/Tile')
+List = require('../../src/components/List')
 
 
 
@@ -55,8 +56,10 @@ class Shell extends React.Component
     <div is="shell">
 
       <div is="left">
-        { for name, specComponent of @context.components
-            <Tile key={ name } onClick={ (e) => @context.updateComponent(e.target.innerHTML) }>{ name }</Tile> }
+        <List>
+          { for name, specComponent of @context.components
+              <Tile key={ name } onClick={ (e) => @context.updateComponent(e.target.innerHTML) }>{ name }</Tile> }
+        </List>
       </div>
 
       <div is="center">
@@ -64,7 +67,9 @@ class Shell extends React.Component
       </div>
 
       <div is="right">
-        { runThrough.call(@props.this, @props.this.describe())  }
+        <List>
+          { runThrough.call(@props.this, @props.this.describe())  }
+        </List>
       </div>
 
     </div>
