@@ -12,10 +12,12 @@ class ButtonSpec extends React.Component
   constructor: (props) ->
     super props
     @state =
-      foo: 'bar'
+      children: 'Single-line item'
 
   describe: ->
-    'nothing': -> console.log('nothing')
+    'children':
+      'single': => @setState( children: 'Single-line item' )
+      'sidebar': => @setState( children: [<div>sidebar</div>,<div>content</div>] )
 
   render: ->
     <Shell this={ @ } width={ 200 }>

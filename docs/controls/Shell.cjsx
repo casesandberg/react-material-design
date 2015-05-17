@@ -4,6 +4,8 @@ React = require('react')
 css = require('react-css')
 uuid = require('uuid')
 
+Tile = require('../../src/components/Tile')
+
 
 
 class Shell extends React.Component
@@ -37,20 +39,16 @@ class Shell extends React.Component
         flexBasis: '200'
         background: '#ddd'
 
-      sidebarItem:
-        padding: '10px'
-        cursor: 'pointer'
-
   styles: -> do @css
 
   render: ->
     runThrough = (obj) ->
       for key, value of obj
         if typeof value is 'function'
-          <div onClick={ value } key={ key }>{ key }</div>
+          <Tile onClick={ value } key={ key }>{ key }</Tile>
         else
           <div key={ uuid.v4() }>
-            <div key={ key }>{ key }</div>
+            <Tile key={ key }>{ key }</Tile>
             <div style={ paddingLeft: '15px' }>{ runThrough.call(@, value) }</div>
           </div>
 
@@ -58,7 +56,7 @@ class Shell extends React.Component
 
       <div is="left">
         { for name, specComponent of @context.components
-            <div is="sidebarItem" key={ name } onClick={ (e) => @context.updateComponent(e.target.innerHTML) }>{ name }</div> }
+            <Tile key={ name } onClick={ (e) => @context.updateComponent(e.target.innerHTML) }>{ name }</Tile> }
       </div>
 
       <div is="center">
