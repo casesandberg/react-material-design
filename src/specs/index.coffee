@@ -1,3 +1,4 @@
 module.exports =
-  ButtonSpec: require('./Button.spec')
-  TileSpec: require('./Tile.spec')
+  Button: require('./Button.spec')
+  Tile: require('./Tile.spec')
+  Icon: require('./Icon.spec')

@@ -31,7 +31,7 @@ class Root extends React.Component
   constructor: (props) ->
     super props
     @state =
-      active: 'TileSpec' #  localStorage.getItem( 'SelectedComponent' ) ||
+      active: 'Tile' #  localStorage.getItem( 'SelectedComponent' ) ||
 
   render: ->
     React.createElement( @props.components[ @state.active ] )

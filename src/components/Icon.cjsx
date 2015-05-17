@@ -24,10 +24,18 @@ class Icon extends React.Component
   classes: ->
     'default':
       icon:
-        background: 'none'
+        position: 'relative'
 
       svg:
-        background: 'none'
+        fill: '#bbb'
+        transition: 'fill 200ms linear'
+
+    'tap-area':
+      icon:
+        height: '24px'
+        lineHeight: '24px'
+        textAlign: 'center'
+        padding: '12px'
 
   styles: -> @css()
 
