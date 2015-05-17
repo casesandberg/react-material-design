@@ -14,6 +14,15 @@ class Tile extends React.Component
         fontSize: '16px'
         padding: '16px'
 
+      primary:
+        display: 'flex'
+
+      sidebar:
+        flexBasis: '56' # 72 minus 16
+
+      content:
+        background: 'none'
+
     'clickable':
       tile:
         cursor: 'pointer'
@@ -25,21 +34,25 @@ class Tile extends React.Component
 
   render: ->
     <div is="tile" onClick={ @handleClick }>
-      <div is="primary">
+
         { if Object.prototype.toString.call(@props.children) is '[object Array]'
             [ sidebar, content... ] = @props.children
-            <div is="sidebar" key={ "sidebar-#{ sidebar }" }>
-              { sidebar }
-            </div>
-            <div is="content" key={ "content-#{ content }" }>
-              { for child, i in content
-                <div key={ i }>
-                  { child }
-                </div> }
+            <div is="primary">
+              <div is="sidebar" key={ "sidebar-#{ sidebar }" }>
+                { sidebar }
+              </div>
+              <div is="content" key={ "content-#{ content }" }>
+                { for child, i in content
+                  <div key={ i }>
+                    { child }
+                  </div> }
+              </div>
             </div>
           else
-            <div is="content">{ @props.children }</div> }
-      </div>
+            <div is="primary">
+              <div is="content">{ @props.children }</div>
+            </div> }
+
     </div>
 
 

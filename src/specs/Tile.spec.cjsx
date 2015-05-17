@@ -17,7 +17,7 @@ class ButtonSpec extends React.Component
   describe: ->
     'children':
       'single': => @setState( children: 'Single-line item' )
-      'sidebar': => @setState( children: [<div>sidebar</div>,<div>content</div>] )
+      'sidebar': => @setState( children: [<div>sdb</div>,<div>content</div>] )
 
   render: ->
     <Shell this={ @ } width={ 200 }>
