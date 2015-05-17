@@ -3,8 +3,9 @@
 React = require('react')
 uuid = require('uuid')
 
-Button = require('../components/Button')
 Shell = require('../../docs/controls/Shell')
+{ Button } = require('../components')
+
 
 
 class ButtonSpec extends React.Component

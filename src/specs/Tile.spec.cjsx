@@ -2,8 +2,8 @@
 
 React = require('react')
 
-Tile = require('../components/Tile')
 Shell = require('../../docs/controls/Shell')
+{ Tile, Icon } = require('../components')
 
 
 
@@ -12,22 +12,22 @@ class ButtonSpec extends React.Component
   constructor: (props) ->
     super props
     @state =
-      children: [<div>sdb</div>,<div>content</div>]
-      secondaryAction: <div>f</div>
+      children: [<Icon name="clock" />,<div>Content</div>]
+      secondaryAction: <Icon name="arrow-right" />
 
   describe: ->
     'PRESET':
-      'All Three': => @setState( children: [<div>sdb</div>,<div>content</div>], secondaryAction: <div>f</div>)
+      'All Three': => @setState( children: [<Icon name="clock" />,<div>Content</div>], secondaryAction: <Icon name="arrow-right" />)
 
     'API':
       'children':
         'single': => @setState( children: 'Single-line item' )
-        'sidebar': => @setState( children: [<div>sdb</div>,<div>content</div>] )
+        'sidebar': => @setState( children: [<div>sdb</div>,<div>Content</div>] )
 
       'props':
         'secondaryAction':
           'none': => @setState( secondaryAction: null )
-          'f icon': => @setState( secondaryAction: <div>f</div> )
+          'arrow icon': => @setState( secondaryAction: <Icon name="arrow-right" /> )
 
   render: ->
     <Shell this={ @ } width={ 300 }>
