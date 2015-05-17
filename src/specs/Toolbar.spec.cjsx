@@ -14,7 +14,7 @@ class ToolbarSpec extends React.Component
     super props
     @state =
       align: 'left'
-      children: [ <Icon name="clock" />, <Icon name="clock" />, <Icon name="clock" /> ]
+      children: [ <Icon name="star-outline" />, <Icon name="calendar-check" />, <Icon name="dots-vertical" /> ]
 
   describe: =>
     'PROPS':
