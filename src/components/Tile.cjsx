@@ -12,7 +12,9 @@ class Tile extends React.Component
     'default':
       tile:
         fontSize: '16px'
-        padding: '16px'
+        padding: '16px 0 16px 16px'
+        display: 'flex'
+        justifyContent: 'space-between'
 
       primary:
         display: 'flex'
@@ -23,6 +25,10 @@ class Tile extends React.Component
       content:
         background: 'none'
 
+      secondary:
+        flexBasis: '42'
+        textAlign: 'center'
+
     'clickable':
       tile:
         cursor: 'pointer'
@@ -30,28 +36,36 @@ class Tile extends React.Component
   styles: -> @css
     'clickable': @props.onClick?
 
-  handleClick: (e) => @props.onClick(e)
+  handleClick: (e) => @props.onClick(e) if @props.onClick?
 
   render: ->
     <div is="tile" onClick={ @handleClick }>
 
-        { if Object.prototype.toString.call(@props.children) is '[object Array]'
-            [ sidebar, content... ] = @props.children
-            <div is="primary">
-              <div is="sidebar" key={ "sidebar-#{ sidebar }" }>
-                { sidebar }
-              </div>
-              <div is="content" key={ "content-#{ content }" }>
-                { for child, i in content
-                  <div key={ i }>
-                    { child }
-                  </div> }
-              </div>
+      { if Object.prototype.toString.call(@props.children) is '[object Array]'
+          [ sidebar, content... ] = @props.children
+          <div is="primary">
+            <div is="sidebar" key={ "sidebar-#{ sidebar }" }>
+              { sidebar }
             </div>
-          else
-            <div is="primary">
-              <div is="content">{ @props.children }</div>
-            </div> }
+            <div is="content" key={ "content-#{ content }" }>
+              { for child, i in content
+                <div key={ i }>
+                  { child }
+                </div> }
+            </div>
+          </div>
+        else
+          <div is="primary">
+            <div is="content">{ @props.children }</div>
+          </div> }
+
+      { if @props.secondaryAction
+        <div is="secondary">
+          { @props.secondaryAction }
+        </div>
+      }
+
+
 
     </div>
 
