@@ -16,7 +16,7 @@ class IconSpec extends React.Component
       name: 'arrow-right'
 
   describe: =>
-    'API':
+    'PROPS':
       'name':
         'null': => @setState( name: '' )
         'arrow-right': => @setState( name: 'arrow-right' )

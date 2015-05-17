@@ -37,7 +37,8 @@ class Icon extends React.Component
         textAlign: 'center'
         padding: '12px'
 
-  styles: -> @css()
+  styles: -> @css
+    'tap-area': true
 
   render: ->
     <div is="icon">

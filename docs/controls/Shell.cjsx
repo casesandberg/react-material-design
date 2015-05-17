@@ -43,6 +43,10 @@ class Shell extends React.Component
   styles: -> do @css
 
   render: ->
+    names = []
+    for name, specComponent of @context.components
+      names.push(name)
+
     runThrough = (obj) ->
       for key, value of obj
         if typeof value is 'function'
@@ -57,8 +61,8 @@ class Shell extends React.Component
 
       <div is="left">
         <List>
-          { for name, specComponent of @context.components
-              <Tile key={ name } onClick={ (e) => @context.updateComponent(e.target.innerHTML) }>{ name }</Tile> }
+          { for lable, i in names
+              <Tile key={ i } controls={ true } onClick={ (e, child) => @context.updateComponent(child) }>{ lable }</Tile> }
         </List>
       </div>
 

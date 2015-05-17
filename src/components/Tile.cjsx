@@ -38,8 +38,10 @@ class Tile extends React.Component
 
   handleClick: (e) => @props.onClick(e) if @props.onClick?
 
+  handleControlsClick: (e) => @props.onClick(e, @props.children) if @props.onClick?
+
   render: ->
-    <div is="tile" onClick={ @handleClick }>
+    <div is="tile" onClick={ if @props.controls then @handleControlsClick else @handleClick }>
 
       { if Object.prototype.toString.call(@props.children) is '[object Array]'
           [ sidebar, content... ] = @props.children

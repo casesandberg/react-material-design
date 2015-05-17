@@ -18,10 +18,11 @@ class ButtonSpec extends React.Component
       color: '#fff'
 
   describe: =>
-    'type':
-      'raised (default)': => @setState( type: 'raised' )
-      'flat': => @setState( type: 'flat' )
-      'floating-action': => @setState( type: 'floating-action' )
+    'PROPS':
+      'type':
+        'raised (default)': => @setState( type: 'raised' )
+        'flat': => @setState( type: 'flat' )
+        'floating-action': => @setState( type: 'floating-action' )
 
     # 'label: foo': => @setState( label: 'foo' )
     #

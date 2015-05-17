@@ -19,15 +19,14 @@ class ButtonSpec extends React.Component
     'PRESET':
       'All Three': => @setState( children: [<Icon name="clock" />,<div>Content</div>], secondaryAction: <Icon name="arrow-right" />)
 
-    'API':
+    'PROPS':
       'children':
         'single': => @setState( children: 'Single-line item' )
         'sidebar': => @setState( children: [<div>sdb</div>,<div>Content</div>] )
 
-      'props':
-        'secondaryAction':
-          'none': => @setState( secondaryAction: null )
-          'arrow icon': => @setState( secondaryAction: <Icon name="arrow-right" /> )
+      'secondaryAction':
+        'none': => @setState( secondaryAction: null )
+        'arrow icon': => @setState( secondaryAction: <Icon name="arrow-right" /> )
 
   render: ->
     <Shell this={ @ } width={ 300 }>

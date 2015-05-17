@@ -4,3 +4,4 @@ module.exports =
   List: require('./List')
   Raised: require('./Raised')
   Tile: require('./Tile')
+  Toolbar: require('./Toolbar')
