@@ -28,6 +28,10 @@ class ButtonSpec extends React.Component
         'none': => @setState( secondaryAction: null )
         'arrow icon': => @setState( secondaryAction: <Icon name="arrow-right" /> )
 
+      'divider':
+        'true': @setState( divider: true )
+        'false': @setState( divider: false )
+
   render: ->
     <Shell this={ @ } width={ 300 }>
       <Tile {...@state } />

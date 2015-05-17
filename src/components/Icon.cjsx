@@ -44,6 +44,7 @@ class Icon extends React.Component
 
     'tap-area':
       icon:
+        width: '24px'
         height: '24px'
         lineHeight: '24px'
         textAlign: 'center'

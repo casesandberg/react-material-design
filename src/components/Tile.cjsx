@@ -18,23 +18,37 @@ class Tile extends React.Component
 
       primary:
         display: 'flex'
+        width: '100%'
 
       sidebar:
+        minWidth: '56px'
+        maxWidth: '56px'
         flexBasis: '56' # 72 minus 16
 
       content:
         background: 'none'
+        alignSelf: 'center'
 
       secondary:
         flexBasis: '42'
         textAlign: 'center'
 
+      sidebarIcon:
+        marginTop: '-12px'
+        marginLeft: '-12px'
+        marginBottom: '-12px'
+
     'clickable':
       tile:
         cursor: 'pointer'
 
+    'divider':
+      tile:
+        boxShadow: 'inset 0 -1px 0 rgba(0,0,0,.12)'
+
   styles: -> @css
     'clickable': @props.onClick?
+    'divider': @props.divider
 
   handleClick: (e) => @props.onClick(e) if @props.onClick?
 
@@ -47,7 +61,12 @@ class Tile extends React.Component
           [ sidebar, content... ] = @props.children
           <div is="primary">
             <div is="sidebar" key={ "sidebar-#{ sidebar }" }>
-              { sidebar }
+              { if sidebar.type.name is 'Icon'
+                  <div is="sidebarIcon">
+                    { sidebar }
+                  </div>
+                else
+                  sidebar }
             </div>
             <div is="content" key={ "content-#{ content }" }>
               { for child, i in content
