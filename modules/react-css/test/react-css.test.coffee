@@ -355,7 +355,7 @@ describe 'React Inline', ->
     expect(css.inline.call(@, before)).to.eql(after)
 
 
-  it 'should include the declared `automagicallyIncludedClassNames`', ->
+  it 'should include the `default` class', ->
 
     @classes = ->
       'default':
@@ -368,6 +368,26 @@ describe 'React Inline', ->
 
     expect(css.inline.call(@)).to.eql(after)
 
+
+  it 'should include the `public` class at the end', ->
+
+    @classes = ->
+      'public':
+        card:
+          opacity: '0'
+
+      'visible':
+        card:
+          opacity: '1'
+
+    before =
+      'visible': true
+
+    after =
+      card:
+        opacity: '0'
+
+    expect(css.inline.call(@, before)).to.eql(after)
 
 
   it 'should grab props.style and include it', ->

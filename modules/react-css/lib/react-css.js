@@ -1,4 +1,4 @@
-var React, _, _css, _merge, _replace, _resolve, autoIncludedClasses, css, define, merge, replaceProps,
+var React, _, _css, _merge, _replace, _resolve, css, define, merge, replaceProps,
   slice = [].slice;
 
 merge = require('merge');
@@ -6,8 +6,6 @@ merge = require('merge');
 React = require('react');
 
 _ = require('lodash');
-
-autoIncludedClasses = ['default'];
 
 
 /*
@@ -38,7 +36,7 @@ Inline CSS function. This is the half-way point until multiple inheritance exist
  */
 
 css.inline = function(declaredClasses) {
-  var arrayOfStyles, condition, i, j, key, len, len1, name, obj, prop, pushStyle, ref, ref1, ref2, ref3, value;
+  var arrayOfStyles, condition, i, key, len, name, obj, prop, pushStyle, ref, ref1, ref2, ref3, value;
   arrayOfStyles = [];
   if (this.classes == null) {
     throw console.warn("Make sure you have this.classes defined on `" + this.constructor.displayName + "`");
@@ -52,10 +50,7 @@ css.inline = function(declaredClasses) {
       }
     };
   })(this);
-  for (i = 0, len = autoIncludedClasses.length; i < len; i++) {
-    name = autoIncludedClasses[i];
-    pushStyle(name);
-  }
+  pushStyle('default');
   ref = _.omit(this.props, 'style');
   for (prop in ref) {
     value = ref[prop];
@@ -80,8 +75,8 @@ css.inline = function(declaredClasses) {
     value = ref2[key];
     if (key === 'class') {
       ref3 = value.split(' ');
-      for (j = 0, len1 = ref3.length; j < len1; j++) {
-        name = ref3[j];
+      for (i = 0, len = ref3.length; i < len; i++) {
+        name = ref3[i];
         pushStyle(name, {
           warn: true
         });
@@ -94,6 +89,7 @@ css.inline = function(declaredClasses) {
       ));
     }
   }
+  pushStyle('public');
   return _css(arrayOfStyles);
 };
 

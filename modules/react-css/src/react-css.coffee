@@ -2,7 +2,6 @@ merge = require('merge')
 React = require('react')
 _ = require('lodash')
 
-autoIncludedClasses = ['default']
 
 ###
 CSS in React
@@ -30,7 +29,7 @@ css.inline = (declaredClasses) ->
     else if name and options?.warn is true
       console.warn "The class `#{name}` does not exist on `#{@constructor.displayName}`"
 
-  pushStyle(name) for name in autoIncludedClasses
+  pushStyle('default')
 
   for prop, value of _.omit(@props, 'style')
     if value is true
@@ -49,6 +48,8 @@ css.inline = (declaredClasses) ->
     else
       # console.warn "You shouldnt be defining CSS for children components in `#{ @constructor.displayName }`, please pass down a class name instead."
       arrayOfStyles.push({ "#{ key }": value })
+
+  pushStyle('public')
 
   return _css(arrayOfStyles)
 
