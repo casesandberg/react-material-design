@@ -21,13 +21,13 @@ Inline CSS function. This is the half-way point until multiple inheritance exist
 css.inline = (declaredClasses) ->
   arrayOfStyles = []
 
-  if not @classes? then throw console.warn "Make sure you have this.classes defined on `#{ @constructor.displayName }`"
+  if not @classes? then throw console.warn "Make sure you have this.classes defined on `#{ @constructor.name }`"
 
   pushStyle = (name, options) =>
     if @classes()[name]?
       arrayOfStyles.push(@classes()[name])
     else if name and options?.warn is true
-      console.warn "The class `#{name}` does not exist on `#{@constructor.displayName}`"
+      console.warn "The class `#{name}` does not exist on `#{@constructor.name}`"
 
   pushStyle('default')
 
@@ -46,8 +46,19 @@ css.inline = (declaredClasses) ->
       pushStyle(name, warn:true) for name in value.split(' ')
 
     else
-      # console.warn "You shouldnt be defining CSS for children components in `#{ @constructor.displayName }`, please pass down a class name instead."
-      arrayOfStyles.push({ "#{ key }": value })
+      if @constructor.publicStyles?
+        if not @constructor.publicStyles[key]
+          console.warn "`#{ key }` is not defined as a public style on `#{@constructor.name}`"
+
+
+
+        # console.log @propTypes?.style
+
+        # for key, value of @propTypes?.style
+        #   console.log key
+        #   console.log value
+      # console.warn "You shouldnt be defining CSS for children components in `#{ @constructor.name }`, please pass down a class name instead."
+      # arrayOfStyles.push({ "#{ key }": value })
 
   pushStyle('public')
 

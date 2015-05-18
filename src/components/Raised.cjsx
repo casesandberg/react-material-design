@@ -7,9 +7,8 @@ css = require('react-css')
 class Raised extends React.Component
   css: css.inline
 
-  @propTypes =
-    style: React.PropTypes.shape
-      background: React.PropTypes.string
+  @publicStyles =
+    background: React.PropTypes.string
 
   @defaultProps =
     radius: '2px'

@@ -4,7 +4,8 @@
   "main": "lib/react-css.js",
   "dependencies": {
     "lodash": "^3.6.0",
-    "merge": "^1.2.0"
+    "merge": "^1.2.0",
+    "react": "^0.13.3"
   },
   "devDependencies": {
     "amd-optimize": "^0.4.3",

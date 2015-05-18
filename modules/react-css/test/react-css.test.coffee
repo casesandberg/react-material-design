@@ -1,5 +1,6 @@
 css = require('../lib/react-css')
 expect = require('chai').expect
+React = require('react')
 
 
 
@@ -419,9 +420,7 @@ describe 'React Inline', ->
     @props =
       style:
         class: 'outlined'
-
-        card:
-          display: 'none'
+        display: 'none'
 
     @classes = ->
       'base':
@@ -431,6 +430,10 @@ describe 'React Inline', ->
       'outlined':
         card:
           border: '2px solid #aeee00'
+
+      'public':
+        card:
+          display: @props.style.display
 
     before =
       'base': true
@@ -442,6 +445,30 @@ describe 'React Inline', ->
         display: 'none'
 
     expect(css.inline.call(@, before)).to.eql(after)
+
+
+
+  it 'if this.publicStyles is defined, only include css its defined', ->
+    @publicStyles =
+      background: React.PropTypes.string
+
+    @props =
+      style:
+        background: '#fff'
+        color: 'red'
+
+    @classes = ->
+      'public':
+        card:
+          background: @props.style.background
+          color: @props.style.color
+
+    after =
+      card:
+        background: '#fff'
+        color: 'red'
+
+    expect(css.inline.call(@)).to.eql(after)
 
 
 

@@ -36,17 +36,17 @@ Inline CSS function. This is the half-way point until multiple inheritance exist
  */
 
 css.inline = function(declaredClasses) {
-  var arrayOfStyles, condition, i, key, len, name, obj, prop, pushStyle, ref, ref1, ref2, ref3, value;
+  var arrayOfStyles, condition, i, key, len, name, prop, pushStyle, ref, ref1, ref2, ref3, value;
   arrayOfStyles = [];
   if (this.classes == null) {
-    throw console.warn("Make sure you have this.classes defined on `" + this.constructor.displayName + "`");
+    throw console.warn("Make sure you have this.classes defined on `" + this.constructor.name + "`");
   }
   pushStyle = (function(_this) {
     return function(name, options) {
       if (_this.classes()[name] != null) {
         return arrayOfStyles.push(_this.classes()[name]);
       } else if (name && (options != null ? options.warn : void 0) === true) {
-        return console.warn("The class `" + name + "` does not exist on `" + _this.constructor.displayName + "`");
+        return console.warn("The class `" + name + "` does not exist on `" + _this.constructor.name + "`");
       }
     };
   })(this);
@@ -82,11 +82,11 @@ css.inline = function(declaredClasses) {
         });
       }
     } else {
-      arrayOfStyles.push((
-        obj = {},
-        obj["" + key] = value,
-        obj
-      ));
+      if (this.constructor.publicStyles != null) {
+        if (!this.constructor.publicStyles[key]) {
+          console.warn("`" + key + "` is not defined as a public style on `" + this.constructor.name + "`");
+        }
+      }
     }
   }
   pushStyle('public');

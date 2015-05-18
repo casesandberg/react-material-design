@@ -11,10 +11,9 @@ Raised = require('./Raised')
 class Button extends React.Component
   css: css.inline
 
-  @propTypes =
-    style: React.PropTypes.shape
-      color: React.PropTypes.string
-      background: React.PropTypes.string
+  @publicStyles =
+    color: React.PropTypes.string
+    background: React.PropTypes.string
 
   @defaultProps =
     type: 'raised'
