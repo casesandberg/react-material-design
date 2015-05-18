@@ -297,167 +297,6 @@ describe 'Replace', ->
 
 
 
-describe 'React Mixin', ->
-
-  it 'should warn you if there are no classes', ->
-
-    before = 'base'
-
-    after = {}
-
-    expect(css.mixin.css.call(@, before)).to.eql(after)
-
-
-
-  it 'should return a css object from a style name', ->
-    @classes = ->
-      'base':
-        card:
-          position: 'absolute'
-
-    before = 'base'
-
-    after =
-      card:
-        position: 'absolute'
-
-    expect(css.mixin.css.call(@, before)).to.eql(after)
-
-
-  it 'should return a css object from a bunch of style names', ->
-
-    @classes = ->
-      'base':
-        card:
-          position: 'absolute'
-
-      'outlined':
-        card:
-          border: '2px solid #aeee00'
-
-      'disabled':
-        card:
-          display: 'none'
-
-    after =
-      card:
-        position: 'absolute'
-        border: '2px solid #aeee00'
-
-    expect(css.mixin.css.call(@, 'base', 'outlined', 'disabled' if false)).to.eql(after)
-
-
-
-  it 'should grab props.style and include it', ->
-    @props = {}
-    @props.style =
-      class: 'outlined'
-
-    @classes = ->
-      'base':
-        card:
-          position: 'absolute'
-
-      'outlined':
-        card:
-          border: '2px solid #aeee00'
-
-    before = ['base']
-
-    after =
-      card:
-        position: 'absolute'
-        border: '2px solid #aeee00'
-
-    expect(css.mixin.css.call(@, before)).to.eql(after)
-
-
-
-  it 'should seperate class names and call them in order', ->
-    @props = {}
-    @props.style =
-      class: 'outlined dark-text'
-
-    @classes = ->
-      'base':
-        card:
-          position: 'absolute'
-
-      'dark-text':
-        card:
-          color: '#333'
-
-      'outlined':
-        card:
-          color: '#aeee00'
-          border: '2px solid #aeee00'
-
-    before = ['base']
-
-    after =
-      card:
-        position: 'absolute'
-        color: '#333'
-        border: '2px solid #aeee00'
-
-    expect(css.mixin.css.call(@, before)).to.eql(after)
-
-
-
-  it 'should seperate class names and call them in order', ->
-    @props = {}
-    @props.style =
-      class: 'outlined dark-text'
-
-    @classes = ->
-      'base':
-        card:
-          position: 'absolute'
-
-      'dark-text':
-        card:
-          color: '#333'
-
-      'outlined':
-        card:
-          color: '#aeee00'
-          border: '2px solid #aeee00'
-
-    before = ['base']
-
-    after =
-      card:
-        position: 'absolute'
-        color: '#333'
-        border: '2px solid #aeee00'
-
-    expect(css.mixin.css.call(@, before)).to.eql(after)
-
-
-
-  it 'should also pass down css from parent to child', ->
-    @props = {}
-    @props.style =
-      card:
-        background: '#fff'
-
-    @classes = ->
-      'base':
-        card:
-          position: 'absolute'
-
-    before = ['base']
-
-    after =
-      card:
-        position: 'absolute'
-        background: '#fff'
-
-    expect(css.mixin.css.call(@, before)).to.eql(after)
-
-
-
-
 describe 'React Inline', ->
 
   # it 'should warn you if there are no classes', ->
@@ -613,5 +452,56 @@ describe 'React Inline', ->
         position: 'absolute'
         color: '#333'
         border: '2px solid #aeee00'
+
+    expect(css.inline.call(@, before)).to.eql(after)
+
+
+
+  it 'should check if props match any class names and include them if they do', ->
+    @props =
+      isSelected: true
+
+    @classes = ->
+      'default':
+        card:
+          position: 'absolute'
+
+      'isSelected':
+        card:
+          color: '#aeee00'
+          border: '2px solid #aeee00'
+
+    after =
+      card:
+        position: 'absolute'
+        color: '#aeee00'
+        border: '2px solid #aeee00'
+
+    expect(css.inline.call(@, before)).to.eql(after)
+
+
+  it 'should check if props and values match a class', ->
+    @props =
+      isSelected: false
+      zDepth: 2
+
+    @classes = ->
+      'default':
+        card:
+          position: 'absolute'
+
+      'isSelected-false':
+        card:
+          background: 'grey'
+
+      'zDepth-2':
+        card:
+          border: '2px solid #333'
+
+    after =
+      card:
+        position: 'absolute'
+        background: 'grey'
+        border: '2px solid #333'
 
     expect(css.inline.call(@, before)).to.eql(after)

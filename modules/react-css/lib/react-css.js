@@ -38,7 +38,7 @@ Inline CSS function. This is the half-way point until multiple inheritance exist
  */
 
 css.inline = function(declaredClasses) {
-  var arrayOfStyles, condition, i, j, key, len, len1, name, obj, pushStyle, ref, ref1, ref2, value;
+  var arrayOfStyles, condition, i, j, key, len, len1, name, obj, prop, pushStyle, ref, ref1, ref2, ref3, value;
   arrayOfStyles = [];
   if (this.classes == null) {
     throw console.warn("Make sure you have this.classes defined on `" + this.constructor.displayName + "`");
@@ -56,6 +56,17 @@ css.inline = function(declaredClasses) {
     name = autoIncludedClasses[i];
     pushStyle(name);
   }
+  ref = _.omit(this.props, 'style');
+  for (prop in ref) {
+    value = ref[prop];
+    if (value === true) {
+      pushStyle(prop);
+    } else if (value) {
+      pushStyle(prop + "-" + value);
+    } else {
+      pushStyle(prop + "-false");
+    }
+  }
   for (name in declaredClasses) {
     condition = declaredClasses[name];
     if (condition === true) {
@@ -64,19 +75,18 @@ css.inline = function(declaredClasses) {
       });
     }
   }
-  ref1 = (ref = this.props) != null ? ref.style : void 0;
-  for (key in ref1) {
-    value = ref1[key];
+  ref2 = (ref1 = this.props) != null ? ref1.style : void 0;
+  for (key in ref2) {
+    value = ref2[key];
     if (key === 'class') {
-      ref2 = value.split(' ');
-      for (j = 0, len1 = ref2.length; j < len1; j++) {
-        name = ref2[j];
+      ref3 = value.split(' ');
+      for (j = 0, len1 = ref3.length; j < len1; j++) {
+        name = ref3[j];
         pushStyle(name, {
           warn: true
         });
       }
     } else {
-      // console.warn("You shouldnt be defining CSS for children components in `" + this.constructor.displayName + "`, please pass down a class name instead.");
       arrayOfStyles.push((
         obj = {},
         obj["" + key] = value,
@@ -166,55 +176,6 @@ _resolve = function() {
     }
   }
   return valueToReturn;
-};
-
-
-/*
-React mixin that handles checking of all of the components styles and applies
-any styles passed down via props.styles
-@param defaultValue: The default "base" value
-@param possibleValues...: Unlimited number of function arguments
-@returns object
- */
-
-css.mixin = {
-  css: function() {
-    var activeStyleNames, arrayOfStyles, i, len, ref, ref1, ref2, ref3, ref4, ref5, ref6, styleName;
-    activeStyleNames = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    arrayOfStyles = [];
-    if ((this.classes != null) && activeStyleNames) {
-
-      /*
-      TESTING THIS FROM ConversationColumn.cjsx
-       */
-      if (this.currentBound != null) {
-        activeStyleNames.push(this.currentBound());
-      }
-      if ((ref = this.props) != null ? (ref1 = ref.style) != null ? ref1["class"] : void 0 : void 0) {
-        if (typeof ((ref2 = this.props.style) != null ? ref2["class"] : void 0) === 'string') {
-          if (((ref3 = this.props.style) != null ? ref3["class"].indexOf(' ') : void 0) !== -1) {
-            activeStyleNames = activeStyleNames.concat((ref4 = this.props.style) != null ? ref4["class"].split(' ') : void 0);
-          } else {
-            activeStyleNames.push(this.props.style["class"]);
-          }
-        }
-      }
-      for (i = 0, len = activeStyleNames.length; i < len; i++) {
-        styleName = activeStyleNames[i];
-        if (this.classes()[styleName]) {
-          arrayOfStyles.push(this.classes()[styleName]);
-        } else if (styleName) {
-          console.warn("The class `" + styleName + "` does not exist on `" + this.constructor.displayName + "`");
-        }
-      }
-      if (_.omit((ref5 = this.props) != null ? ref5.style : void 0, 'class')) {
-        arrayOfStyles.push(_.omit((ref6 = this.props) != null ? ref6.style : void 0, 'class'));
-      }
-    } else {
-      console.warn('Make sure you have classes defined under this.classes in your component');
-    }
-    return _css(arrayOfStyles);
-  }
 };
 
 

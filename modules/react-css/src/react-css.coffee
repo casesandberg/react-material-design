@@ -32,6 +32,14 @@ css.inline = (declaredClasses) ->
 
   pushStyle(name) for name in autoIncludedClasses
 
+  for prop, value of _.omit(@props, 'style')
+    if value is true
+      pushStyle(prop)
+    else if value
+      pushStyle("#{ prop }-#{ value }")
+    else
+      pushStyle("#{ prop }-false")
+
   pushStyle(name, warn:true) for name, condition of declaredClasses when condition is true
 
   for key, value of @props?.style
@@ -125,68 +133,6 @@ _resolve = (defaultValue, possibleValues...) ->
       valueToReturn = possibleValue
 
   return valueToReturn
-
-
-
-###
-React mixin that handles checking of all of the components styles and applies
-any styles passed down via props.styles
-@param defaultValue: The default "base" value
-@param possibleValues...: Unlimited number of function arguments
-@returns object
-###
-css.mixin =
-  css: (activeStyleNames...) ->
-    arrayOfStyles = []
-
-    # Check for classes first
-    if @classes? and activeStyleNames
-
-      ###
-      TESTING THIS FROM ConversationColumn.cjsx
-      ###
-      # If there are any breakpoints active
-      if @currentBound?
-        activeStyleNames.push(@currentBound())
-
-      # If there are styles passed down
-      if @props?.style?.class
-
-        # And props.style is an array, lets combine them
-        # if Array.isArray(@props.style)
-        #   activeStyleNames = activeStyleNames.concat(@props.style)
-
-
-        if typeof @props.style?.class is 'string'
-
-          # if its multiple classes, then lets combine it
-          if @props.style?.class.indexOf(' ') isnt -1
-            activeStyleNames = activeStyleNames.concat(@props.style?.class.split(' '))
-
-          else
-            # if its a string, lets just push it
-            activeStyleNames.push(@props.style.class)
-
-      # Iterate through the style names
-      for styleName in activeStyleNames
-
-        # If the style actually exists, lets add it to the array
-        if @classes()[styleName]
-          arrayOfStyles.push(@classes()[styleName])
-        # If the lookup fails, let the dev know
-        else if styleName
-          console.warn "The class `#{styleName}` does not exist on `#{@constructor.displayName}`"
-
-      # Quick fix for bleeding css
-      if _.omit(@props?.style, 'class')
-        arrayOfStyles.push(_.omit(@props?.style, 'class'))
-
-    else
-      console.warn 'Make sure you have classes defined under this.classes in
-                    your component'
-
-    # Pass the array to the CSS method
-    return _css(arrayOfStyles)
 
 
 

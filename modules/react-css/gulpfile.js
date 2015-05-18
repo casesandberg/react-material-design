@@ -15,11 +15,12 @@ gulp.task('watch', function(done) {
   gulp.watch([ '**/*.coffee' ], [ 'bundle', 'test' ]);
 });
 
-gulp.task('bundle', function() {
-  return gulp.src('./src/**/*.coffee')
+gulp.task('bundle', function(done) {
+  gulp.src('./src/**/*.coffee')
     .pipe(coffee({bare: true}))
     .pipe(concat('react-css.js'))
     .pipe(gulp.dest('lib'));
+  done();
 });
 
 gulp.task('default', function() { });
