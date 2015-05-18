@@ -14,8 +14,10 @@ class ButtonSpec extends React.Component
     super props
     @state =
       label: 'Button'
-      background: '#2196f3'
-      color: '#fff'
+
+      style:
+        background: '#2196f3'
+        color: '#fff'
 
   describe: =>
     'PROPS':
