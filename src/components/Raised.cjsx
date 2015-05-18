@@ -62,12 +62,6 @@ class Raised extends React.Component
         borderRadius: '50%'
 
   styles: -> @css
-    'zDepth-0': @props.zDepth is '0'
-    'zDepth-1': @props.zDepth is '1'
-    'zDepth-2': @props.zDepth is '2'
-    'zDepth-3': @props.zDepth is '3'
-    'zDepth-4': @props.zDepth is '4'
-    'zDepth-5': @props.zDepth is '5'
     'public': true
 
   # componentWillReceiveProps: (nextProps) ->
