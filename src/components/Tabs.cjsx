@@ -9,7 +9,7 @@ class Tabs extends React.Component
   css: css.inline
 
   @defaultProps =
-    selectedIndex: 0
+    selectedTab: 0
 
   classes: ->
     'default':
@@ -22,18 +22,8 @@ class Tabs extends React.Component
 
       tab:
         width: "#{ 100 / @props.children.length }%"
-        # minWidth: '136px' # 160 minus 12*2
-        minWidth: '44px' # 160 minus 12*2
+        minWidth: '68px'
         maxWidth: '240px'
-        paddingLeft: '12px'
-        paddingRight: '12px'
-        height: '48px'
-        lineHeight: '48px'
-        textAlign: 'center'
-        fontSize: '14px'
-        textTransform: 'uppercase'
-        fontWeight: '500'
-        whiteSpace: 'nowrap'
 
       indicator:
         height: '2px'
@@ -45,10 +35,12 @@ class Tabs extends React.Component
     'scrollable':
       tabs:
         overflowX: 'scroll'
+
       tabWrap:
         paddingLeft: '60px'
         justifyContent: 'flex-start'
         width: '400%'
+
       tab:
         width: 'auto'
 
@@ -78,18 +70,20 @@ class Tabs extends React.Component
     @refs.indicator.getDOMNode().style.width = width
 
   componentDidMount: ->
-    selected = @refs["tab-#{ @props.selectedIndex }"].getDOMNode()
+    selected = @refs["tab-#{ @props.selectedTab }"].getDOMNode()
     @moveIndicator(selected.getBoundingClientRect().left - @refs.tabs.getDOMNode().getBoundingClientRect().left, selected.offsetWidth)
 
   componentDidUpdate: ->
-    selected = @refs["tab-#{ @props.selectedIndex }"].getDOMNode()
+    selected = @refs["tab-#{ @props.selectedTab }"].getDOMNode()
     @moveIndicator(selected.getBoundingClientRect().left - @refs.tabs.getDOMNode().getBoundingClientRect().left, selected.offsetWidth)
 
   render: ->
     <div is="tabs" ref="tabs">
       <div is="tabWrap">
         { for child, i in @props.children
-            <div is="tab" ref={ "tab-#{ i }" } key={ i }><Tab tab={ i } onClick={ @handleClick }>{ child }</Tab></div> }
+            <div is="tab" ref={ "tab-#{ i }" } key={ i }>
+              <Tab tab={ i } selected={ @props.selectedTab is i } onClick={ @handleClick }>{ child }</Tab>
+            </div> }
       </div>
       <div is="indicator" ref="indicator" />
     </div>
@@ -97,11 +91,34 @@ class Tabs extends React.Component
 
 
 class Tab extends React.Component
+  css: css.inline
+
+  classes: ->
+    'default':
+      tab:
+        paddingLeft: '12px'
+        paddingRight: '12px'
+        height: '48px'
+        lineHeight: '48px'
+        textAlign: 'center'
+        fontSize: '14px'
+        textTransform: 'uppercase'
+        fontWeight: '500'
+        whiteSpace: 'nowrap'
+        opacity: '.5'
+        transition: 'opacity 100ms linear'
+
+    'selected':
+      tab:
+        opacity: '1'
+
+  styles: -> @css()
+
 
   handleClick: => @props.onClick(@props.tab)
 
   render: ->
-    <div onClick={ @handleClick }>{ @props.children }</div>
+    <div is="tab" onClick={ @handleClick }>{ @props.children }</div>
 
 
 

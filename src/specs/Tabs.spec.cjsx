@@ -16,7 +16,7 @@ class TabsSpec extends React.Component
       width: 340
       onSelect: (tab) => @changeTab(tab)
 
-  changeTab: (tab) => @setState( selectedIndex: tab )
+  changeTab: (tab) => @setState( selectedTab: tab )
 
 
   describe: ->
