@@ -12,7 +12,7 @@ class TabsSpec extends React.Component
   constructor: (props) ->
     super props
     @state =
-      children: [ 'foo', 'bar', 'longer' ]
+      children: [ 'foo', 'bar', 'way longer', 'bar', 'foo' ]
       width: 340
       onSelect: (tab) => @changeTab(tab)
 

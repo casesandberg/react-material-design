@@ -73,20 +73,33 @@ class Tabs extends React.Component
 
   handleClick: (tab) => @setState( selectedTab: tab )
 
-  moveIndicator: ->
-    selected = @refs["tab-#{ @state.selectedTab }"]?.getDOMNode()
+  slide: ->
 
-    if selected
-      @refs.indicator.getDOMNode().style.left = selected.getBoundingClientRect().left - @refs.tabs.getDOMNode().getBoundingClientRect().left + @refs.tabs.getDOMNode().scrollLeft
-      @refs.indicator.getDOMNode().style.width = selected.offsetWidth
+    containerNode = @refs.tabs.getDOMNode()
+    containerLeft = containerNode.scrollLeft
+    containerRight = containerNode.offsetWidth + containerNode.scrollLeft
 
-  componentDidMount: -> @moveIndicator()
+    selectedNode = @refs["tab-#{ @state.selectedTab }"]?.getDOMNode()
+    selectedLeft = selectedNode.getBoundingClientRect().left - containerNode.getBoundingClientRect().left + containerNode.scrollLeft
+    selectedRight = selectedLeft + selectedNode.offsetWidth
+
+    # scroll right if tab is off screen
+    if selectedRight > containerRight
+      containerNode.scrollLeft += (selectedRight - containerRight)
+    # scroll left if tab is off screen
+    if selectedLeft < containerLeft
+      containerNode.scrollLeft -= (containerLeft - selectedLeft)
+    # slide the indicator
+    @refs.indicator.getDOMNode().style.left = selectedLeft
+    @refs.indicator.getDOMNode().style.width = selectedNode.offsetWidth
+
+  componentDidMount: -> @slide()
 
   componentWillUpdate: (nextProps, nextState) ->
     if nextState.selectedTab >= nextProps.children.length
       nextState.selectedTab = nextProps.children.length - 1
 
-  componentDidUpdate: -> @moveIndicator()
+  componentDidUpdate: -> @slide()
 
   render: ->
     <div is="tabs" ref="tabs">
