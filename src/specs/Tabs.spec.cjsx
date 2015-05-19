@@ -3,11 +3,18 @@
 React = require('react')
 
 Shell = require('../../docs/controls/Shell')
-{ Tabs } = require('../components')
+{ Tabs, Raised } = require('../components')
 
+
+context =
+  primaryColor: '#2196F3'
+  accentColor: '#E91E63'
+  theme: 'light'
 
 
 class TabsSpec extends React.Component
+
+
 
   constructor: (props) ->
     super props
@@ -15,6 +22,9 @@ class TabsSpec extends React.Component
       children: [ 'foo', 'bar', 'longer' ]
       width: 340
       onSelect: (tab) => @changeTab(tab)
+      # style:
+      #   indicatorColor: context.accentColor
+      #   activeLabelColor: context.accentColor
 
   changeTab: (tab) => @setState( selectedTab: tab )
 
@@ -37,7 +47,9 @@ class TabsSpec extends React.Component
 
   render: ->
     <Shell this={ @ } width={ @state.width }>
-      <Tabs {...@state } />
+      <Raised style={ background: context.primaryColor, class: 'square' } >
+        <Tabs {...@state } />
+      </Raised>
     </Shell>
 
 

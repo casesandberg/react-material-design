@@ -6,12 +6,22 @@ css = require('react-css')
 Tab = require('./Tab')
 
 
+context =
+  primaryColor: '#2196F3'
+  accentColor: '#E91E63'
+  theme: 'light'
+
 
 class Tabs extends React.Component
   css: css.inline
 
   @defaultProps =
     selectedTab: 0
+
+  @contextTypes:
+    primaryColor: React.PropTypes.string
+    accentColor: React.PropTypes.string
+    theme: React.PropTypes.string
 
   constructor: (props) ->
     super props
@@ -37,8 +47,15 @@ class Tabs extends React.Component
         position: 'absolute'
         bottom: '0'
         left: '0'
-        background: '#333'
+        background: if context.theme is 'dark' then 'rgba(0,0,0,.87)' else if context.theme is 'light' then 'rgba(255,255,255,.87)'
         transition: 'all 200ms linear'
+
+    'public':
+      indicator: {}
+        # background: @props.style?.indicatorColor
+
+      Tab: {}
+        # activeColor: @props.style?.activeLabelColor
 
     'scrollable':
       tabs:
@@ -73,7 +90,7 @@ class Tabs extends React.Component
 
   handleClick: (tab) => @setState( selectedTab: tab )
 
-  slide: ->    
+  slide: ->
     containerNode = @refs.tabs.getDOMNode()
     containerLeft = containerNode.scrollLeft
     containerRight = containerNode.offsetWidth + containerNode.scrollLeft
@@ -105,7 +122,7 @@ class Tabs extends React.Component
       <div is="tabWrap">
         { for child, i in @props.children
             <div is="tab" ref={ "tab-#{ i }" } key={ i }>
-              <Tab tab={ i } selected={ @state.selectedTab is i } onClick={ @handleClick }>{ child }</Tab>
+              <Tab is="Tab" tab={ i } selected={ @state.selectedTab is i } onClick={ @handleClick }>{ child }</Tab>
             </div> }
       </div>
       <div is="indicator" ref="indicator" />

@@ -4,6 +4,11 @@ React = require('react')
 css = require('react-css')
 
 
+context =
+  primaryColor: '#2196F3'
+  accentColor: '#E91E63'
+  theme: 'light'
+
 
 class Tab extends React.Component
   css: css.inline
@@ -11,6 +16,7 @@ class Tab extends React.Component
   classes: ->
     'default':
       tab:
+        color: if context.theme is 'dark' then 'rgba(0,0,0,.87)' else if context.theme is 'light' then 'rgba(255,255,255,.87)'
         cursor: 'pointer'
         paddingLeft: '12px'
         paddingRight: '12px'
@@ -24,9 +30,14 @@ class Tab extends React.Component
         opacity: '.5'
         transition: 'opacity 100ms linear'
 
+    'public':
+      tab: {}
+
+
     'selected':
       tab:
         opacity: '1'
+        # color: @props.style?.activeColor
 
   styles: -> @css()
 

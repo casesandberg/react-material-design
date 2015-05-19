@@ -56,6 +56,10 @@ class Raised extends React.Component
       bg:
         boxShadow: '0 40px 77px rgba(0,0,0,.22), 0 27px 24px rgba(0,0,0,.2)'
 
+    'square':
+      bg:
+        borderRadius: '0'
+
     'circle':
       bg:
         borderRadius: '50%'
