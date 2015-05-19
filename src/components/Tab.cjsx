@@ -13,6 +13,12 @@ context =
 class Tab extends React.Component
   css: css.inline
 
+  @propTypes =
+    selected: React.PropTypes.bool
+
+  @defaultProps =
+    selected: false
+
   classes: ->
     'default':
       tab:

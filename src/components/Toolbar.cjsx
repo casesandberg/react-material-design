@@ -8,6 +8,9 @@ css = require('react-css')
 class Toolbar extends React.Component
   css: css.inline
 
+  @propTypes =
+    align: React.PropTypes.oneOf(['left', 'right', 'justify'])
+
   @defaultProps =
     align: 'left'
 

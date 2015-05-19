@@ -29,9 +29,8 @@ icons =
 class Icon extends React.Component
   css: css.inline
 
-  @defaultProps =
-    type: 'raised'
-    zDepth: '1'
+  @propTypes =
+    name: React.PropTypes.string.isRequired
 
   classes: ->
     'default':

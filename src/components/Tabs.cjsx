@@ -15,6 +15,10 @@ context =
 class Tabs extends React.Component
   css: css.inline
 
+  @propTypes =
+    selectedTab: React.PropTypes.number
+    width: React.PropTypes.number
+
   @defaultProps =
     selectedTab: 0
 

@@ -7,12 +7,18 @@ css = require('react-css')
 class Raised extends React.Component
   css: css.inline
 
-  # @publicStyles =
-  #   background: React.PropTypes.string
+  @propTypes:
+    background: React.PropTypes.string
+    zDepth: React.PropTypes.oneOf(['0', '1', '2', '3', '4', '5', 0, 1, 2, 3, 4, 5])
+    radius: React.PropTypes.oneOfType([
+      React.PropTypes.string,
+      React.PropTypes.number
+    ])
 
   @defaultProps =
-    radius: '2px'
+    background: '#fff'
     zDepth: '1'
+    radius: '2px'
 
   classes: ->
     'default':
