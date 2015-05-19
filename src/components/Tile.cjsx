@@ -48,7 +48,6 @@ class Tile extends React.Component
 
   styles: -> @css
     'clickable': @props.onClick?
-    'divider': @props.divider
 
   handleClick: (e) => @props.onClick(e) if @props.onClick?
 

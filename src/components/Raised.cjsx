@@ -60,8 +60,7 @@ class Raised extends React.Component
       bg:
         borderRadius: '50%'
 
-  styles: -> @css
-    'public': true
+  styles: -> @css()
 
   # componentWillReceiveProps: (nextProps) ->
   #   if Number(nextProps.zDepth) > 5

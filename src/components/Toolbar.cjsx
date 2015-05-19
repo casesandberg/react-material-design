@@ -34,10 +34,7 @@ class Toolbar extends React.Component
         display: 'flex'
         justifyContent: 'space-between'
 
-  styles: -> @css
-    'align-left': @props.align is 'left'
-    'align-right': @props.align is 'right'
-    'align-justify': @props.align is 'justify'
+  styles: -> @css()
 
   render: ->
     <div is="toolbar">

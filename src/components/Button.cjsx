@@ -40,7 +40,7 @@ class Button extends React.Component
       Raised:
         background: @props.style?.background
 
-    'circular-with-icon':
+    'type-floating-action':
       Raised:
         class: 'circle'
 
@@ -52,14 +52,7 @@ class Button extends React.Component
         color: '#fff'
         fontSize: '24px'
 
-
-  styles: -> @css
-    'circular-with-icon': @props.type is 'floating-action'
-    'public': true
-
-
-
-
+  styles: -> @css()
 
   render: ->
     # if @props.type is 'flat' and @props.zDepth? and @props.zDepth isnt '0'

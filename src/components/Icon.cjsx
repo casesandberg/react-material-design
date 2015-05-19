@@ -57,7 +57,6 @@ class Icon extends React.Component
       svg:
         marginLeft: '-6px'
 
-
   styles: -> @css
     'tap-area': true
     'cut-in-half': @props.name is 'dots-vertical'
