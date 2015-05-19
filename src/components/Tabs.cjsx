@@ -18,11 +18,6 @@ class Tabs extends React.Component
   @defaultProps =
     selectedTab: 0
 
-  @contextTypes:
-    primaryColor: React.PropTypes.string
-    accentColor: React.PropTypes.string
-    theme: React.PropTypes.string
-
   constructor: (props) ->
     super props
     @state =

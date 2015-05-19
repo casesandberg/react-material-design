@@ -11,10 +11,10 @@ Raised = require('./Raised')
 class Button extends React.Component
   css: css.inline
 
-  @publicStyles =
-    color: React.PropTypes.string
-    background: React.PropTypes.string
-    zDepth: React.PropTypes.string
+  # @publicStyles =
+  #   color: React.PropTypes.string
+  #   background: React.PropTypes.string
+  #   zDepth: React.PropTypes.string
 
   @defaultProps =
     type: 'raised'
@@ -36,14 +36,15 @@ class Button extends React.Component
 
     'public':
       button:
-        color: @props.style?.color
+        color: @props.color
 
       Raised:
-        background: if @props.type isnt 'flat' then @props.style?.background
+        background: if @props.type isnt 'flat' then @props.background
+        zDepth: if @props.type is 'flat' then '0' else @props.zDepth
 
     'type-floating-action':
       Raised:
-        class: 'circle'
+        circle: true
 
       button:
         width: '56px'
@@ -59,7 +60,7 @@ class Button extends React.Component
     # if @props.type is 'flat' and @props.zDepth? and @props.zDepth isnt '0'
     #   console.log '`Button` components that have a type of `flat` should not have a `zDepth`'
 
-    <Raised is="Raised" zDepth={ if @props.type is 'flat' then '0' else @props.zDepth }>
+    <Raised is="Raised">
       <div is="button">
         { if @props.type isnt 'floating-action'
             @props.label

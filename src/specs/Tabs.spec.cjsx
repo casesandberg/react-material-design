@@ -47,7 +47,7 @@ class TabsSpec extends React.Component
 
   render: ->
     <Shell this={ @ } width={ @state.width }>
-      <Raised style={ background: context.primaryColor, class: 'square' } >
+      <Raised background={ context.primaryColor } square >
         <Tabs {...@state } />
       </Raised>
     </Shell>

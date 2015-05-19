@@ -7,8 +7,8 @@ css = require('react-css')
 class Raised extends React.Component
   css: css.inline
 
-  @publicStyles =
-    background: React.PropTypes.string
+  # @publicStyles =
+  #   background: React.PropTypes.string
 
   @defaultProps =
     radius: '2px'
@@ -27,10 +27,6 @@ class Raised extends React.Component
         boxShadow: "0 #{ @props.zDepth }px #{ @props.zDepth * 4 }px rgba(0,0,0,.24)"
         borderRadius: @props.radius
         background: @props.background
-
-    'public':
-      bg:
-        background: @props.style.background
 
     'zDepth-0':
       bg:
