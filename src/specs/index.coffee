@@ -4,3 +4,4 @@ module.exports =
   Icon: require('./Icon.spec')
   Toolbar: require('./Toolbar.spec')
   List: require('./List.spec')
+  Tabs: require('./Tabs.spec')

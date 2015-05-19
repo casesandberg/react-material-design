@@ -6,3 +6,4 @@ module.exports =
   Tile: require('./Tile')
   Toolbar: require('./Toolbar')
   List: require('./List')
+  Tabs: require('./Tabs')
