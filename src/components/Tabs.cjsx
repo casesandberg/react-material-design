@@ -73,8 +73,7 @@ class Tabs extends React.Component
 
   handleClick: (tab) => @setState( selectedTab: tab )
 
-  slide: ->
-
+  slide: ->    
     containerNode = @refs.tabs.getDOMNode()
     containerLeft = containerNode.scrollLeft
     containerRight = containerNode.offsetWidth + containerNode.scrollLeft
