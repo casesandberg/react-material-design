@@ -14,6 +14,7 @@ class Button extends React.Component
   @publicStyles =
     color: React.PropTypes.string
     background: React.PropTypes.string
+    zDepth: React.PropTypes.string
 
   @defaultProps =
     type: 'raised'
@@ -38,7 +39,7 @@ class Button extends React.Component
         color: @props.style?.color
 
       Raised:
-        background: @props.style?.background
+        background: if @props.type isnt 'flat' then @props.style?.background
 
     'type-floating-action':
       Raised:
@@ -58,7 +59,7 @@ class Button extends React.Component
     # if @props.type is 'flat' and @props.zDepth? and @props.zDepth isnt '0'
     #   console.log '`Button` components that have a type of `flat` should not have a `zDepth`'
 
-    <Raised is="Raised" background={ @props.background if @props.type isnt 'flat' } zDepth={ if @props.type is 'flat' then '0' else @props.zDepth }>
+    <Raised is="Raised" zDepth={ if @props.type is 'flat' then '0' else @props.zDepth }>
       <div is="button">
         { if @props.type isnt 'floating-action'
             @props.label
