@@ -51,15 +51,17 @@ css.inline = function(declaredClasses) {
     };
   })(this);
   pushStyle('default');
-  ref = _.omit(this.props, 'style');
+  ref = _.omit(this.props, ['style', 'children']);
   for (prop in ref) {
     value = ref[prop];
-    if (value === true) {
-      pushStyle(prop);
-    } else if (value) {
-      pushStyle(prop + "-" + value);
-    } else {
-      pushStyle(prop + "-false");
+    if (!_.isObject(value)) {
+      if (value === true) {
+        pushStyle(prop);
+      } else if (value) {
+        pushStyle(prop + "-" + value);
+      } else {
+        pushStyle(prop + "-false");
+      }
     }
   }
   for (name in declaredClasses) {

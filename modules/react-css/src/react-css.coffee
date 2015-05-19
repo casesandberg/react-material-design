@@ -31,13 +31,14 @@ css.inline = (declaredClasses) ->
 
   pushStyle('default')
 
-  for prop, value of _.omit(@props, 'style')
-    if value is true
-      pushStyle(prop)
-    else if value
-      pushStyle("#{ prop }-#{ value }")
-    else
-      pushStyle("#{ prop }-false")
+  for prop, value of _.omit(@props, ['style', 'children'])
+    if not _.isObject(value)
+      if value is true
+        pushStyle(prop)
+      else if value
+        pushStyle("#{ prop }-#{ value }")
+      else
+        pushStyle("#{ prop }-false")
 
   pushStyle(name, warn:true) for name, condition of declaredClasses when condition is true
 
