@@ -7,3 +7,4 @@ module.exports =
   Toolbar: require('./Toolbar')
   List: require('./List')
   Tabs: require('./Tabs')
+  Tab: require('./Tab')

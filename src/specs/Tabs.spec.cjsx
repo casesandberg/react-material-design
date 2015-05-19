@@ -21,7 +21,7 @@ class TabsSpec extends React.Component
 
   describe: ->
     'PRESET':
-      'fixed mobile': => @setState( children: [ 'foo', 'bar', 'longer' ], width: 340 )
+      'fixed mobile': => @setState( children: [ 'foo', 'bar', 'longer' ], width: 340, align: undefined)
       'left desktop': => @setState( children: [ 'foo', 'bar', 'way longer' ], width: 640, align: 'left' )
 
     'API':

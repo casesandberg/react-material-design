@@ -3,6 +3,8 @@
 React = require('react')
 css = require('react-css')
 
+Tab = require('./Tab')
+
 
 
 class Tabs extends React.Component
@@ -10,6 +12,11 @@ class Tabs extends React.Component
 
   @defaultProps =
     selectedTab: 0
+
+  constructor: (props) ->
+    super props
+    @state =
+      selectedTab: if @props.selectedTab < @props.children.length then @props.selectedTab else 0
 
   classes: ->
     'default':
@@ -28,6 +35,7 @@ class Tabs extends React.Component
       indicator:
         height: '2px'
         position: 'absolute'
+        bottom: '0'
         left: '0'
         background: '#333'
         transition: 'all 200ms linear'
@@ -63,62 +71,33 @@ class Tabs extends React.Component
   styles: -> @css
     'scrollable': @props.width / @props.children.length < 72
 
-  handleClick: (tab) => @props.onSelect( tab )
+  handleClick: (tab) => @setState( selectedTab: tab )
 
-  moveIndicator: (left, width) ->
-    @refs.indicator.getDOMNode().style.left = left
-    @refs.indicator.getDOMNode().style.width = width
+  moveIndicator: ->
+    selected = @refs["tab-#{ @state.selectedTab }"]?.getDOMNode()
 
-  componentDidMount: ->
-    selected = @refs["tab-#{ @props.selectedTab }"].getDOMNode()
-    @moveIndicator(selected.getBoundingClientRect().left - @refs.tabs.getDOMNode().getBoundingClientRect().left, selected.offsetWidth)
+    if selected
+      @refs.indicator.getDOMNode().style.left = selected.getBoundingClientRect().left - @refs.tabs.getDOMNode().getBoundingClientRect().left + @refs.tabs.getDOMNode().scrollLeft
+      @refs.indicator.getDOMNode().style.width = selected.offsetWidth
 
-  componentDidUpdate: ->
-    selected = @refs["tab-#{ @props.selectedTab }"].getDOMNode()
-    @moveIndicator(selected.getBoundingClientRect().left - @refs.tabs.getDOMNode().getBoundingClientRect().left, selected.offsetWidth)
+  componentDidMount: -> @moveIndicator()
+
+  componentWillUpdate: (nextProps, nextState) ->
+    if nextState.selectedTab >= nextProps.children.length
+      nextState.selectedTab = nextProps.children.length - 1
+
+  componentDidUpdate: -> @moveIndicator()
 
   render: ->
     <div is="tabs" ref="tabs">
       <div is="tabWrap">
         { for child, i in @props.children
             <div is="tab" ref={ "tab-#{ i }" } key={ i }>
-              <Tab tab={ i } selected={ @props.selectedTab is i } onClick={ @handleClick }>{ child }</Tab>
+              <Tab tab={ i } selected={ @state.selectedTab is i } onClick={ @handleClick }>{ child }</Tab>
             </div> }
       </div>
       <div is="indicator" ref="indicator" />
     </div>
-
-
-
-class Tab extends React.Component
-  css: css.inline
-
-  classes: ->
-    'default':
-      tab:
-        paddingLeft: '12px'
-        paddingRight: '12px'
-        height: '48px'
-        lineHeight: '48px'
-        textAlign: 'center'
-        fontSize: '14px'
-        textTransform: 'uppercase'
-        fontWeight: '500'
-        whiteSpace: 'nowrap'
-        opacity: '.5'
-        transition: 'opacity 100ms linear'
-
-    'selected':
-      tab:
-        opacity: '1'
-
-  styles: -> @css()
-
-
-  handleClick: => @props.onClick(@props.tab)
-
-  render: ->
-    <div is="tab" onClick={ @handleClick }>{ @props.children }</div>
 
 
 
