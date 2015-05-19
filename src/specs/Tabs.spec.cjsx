@@ -14,6 +14,9 @@ class TabsSpec extends React.Component
     @state =
       children: [ 'foo', 'bar', 'longer' ]
       width: 340
+      onSelect: (tab) => @changeTab(tab)
+
+  changeTab: (tab) => @setState( selectedIndex: tab )
 
 
   describe: ->
