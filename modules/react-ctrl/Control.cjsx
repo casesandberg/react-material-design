@@ -4,9 +4,10 @@ React = require('react')
 css = require('react-css')
 uuid = require('uuid')
 
-Tile = require('../../src/components/Tile')
-List = require('../../src/components/List')
+{ Tile, List, Raised } = require('../../src/components')
 ControlsTile = require('../../docs/controls/ControlsTile')
+
+
 
 _ = require('lodash')
 
@@ -32,18 +33,32 @@ class Control extends React.Component
         display: 'flex'
         justifyContent: 'space-between'
         alignItems: 'stretch'
+        background: '#f6f6f6'
 
       left:
-        flexBasis: '200'
-        background: '#eee'
+        minWidth: '150px'
+        flexBasis: '150'
+        overflowY: 'scroll'
 
       center:
+        width: '100%'
+        padding: '2% 0'
+        height: '94%'
+
+      centerFlex:
+        display: 'flex'
+        justifyContent: 'center'
+        width: '100%'
+        height: '100%'
+
+      centerWrap:
         alignSelf: 'center'
         width: @props.width
 
       right:
-        flexBasis: '200'
-        background: '#ddd'
+        minWidth: '250px'
+        flexBasis: '250'
+        overflowY: 'scroll'
 
   styles: -> do @css
 
@@ -101,9 +116,19 @@ class Control extends React.Component
         </List>
       </div>
 
+
       <div is="center">
-        { React.createElement(@props.component, @state)}
+        <Raised background="#fff" full>
+          <div is="centerFlex">
+            <div is="centerWrap">
+
+              { React.createElement(@props.component, @state)}
+
+            </div>
+          </div>
+        </Raised>
       </div>
+
 
       <div is="right">
 

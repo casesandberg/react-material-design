@@ -66,6 +66,11 @@ class Raised extends React.Component
       bg:
         borderRadius: '50%'
 
+    # Placeholder for Control width problems
+    'full':
+      wrap:
+        width: '100%'
+
   styles: -> @css()
 
   # componentWillReceiveProps: (nextProps) ->
