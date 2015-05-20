@@ -11,6 +11,23 @@ Raised = require('./Raised')
 class Button extends React.Component
   css: css.inline
 
+  @expectedProps =
+    type:
+      type: 'oneOf'
+      values: ['raised', 'flat', 'floating-action']
+
+    zDepth:
+      type: 'oneOf'
+      values: ['0', '1', '2', '3', '4', '5'] # 0, 1, 2, 3, 4, 5
+
+    label:
+      type: 'string'
+      examples: ['Button', 'Save \& Activate', 'Post to Facebook']
+
+    background:
+      type: 'string'
+      examples: ['#2196f3', '#aeee00', '#333']
+
   @propTypes =
     type: React.PropTypes.oneOf(['raised', 'flat', 'floating-action'])
     label: React.PropTypes.string

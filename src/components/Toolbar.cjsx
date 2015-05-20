@@ -8,6 +8,11 @@ css = require('react-css')
 class Toolbar extends React.Component
   css: css.inline
 
+  @expectedProps =
+    align:
+      type: 'oneOf'
+      values: ['left', 'right', 'justify']
+
   @propTypes =
     align: React.PropTypes.oneOf(['left', 'right', 'justify'])
 
@@ -40,6 +45,8 @@ class Toolbar extends React.Component
   styles: -> @css()
 
   render: ->
+
+
     <div is="toolbar">
       { for child, i in @props.children
           <div is="item" key={ i }>

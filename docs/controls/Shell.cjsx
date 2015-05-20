@@ -6,6 +6,9 @@ uuid = require('uuid')
 
 Tile = require('../../src/components/Tile')
 List = require('../../src/components/List')
+ControlsTile = require('./ControlsTile')
+
+_ = require('lodash')
 
 
 
@@ -49,13 +52,33 @@ class Shell extends React.Component
 
     runThrough = (obj) ->
       for key, value of obj
-        if typeof value is 'function'
-          <Tile onClick={ value } key={ key }>{ key }</Tile>
-        else
+        if key is 'API'
           <div key={ uuid.v4() }>
             <Tile key={ key }>{ key }</Tile>
-            <div style={ paddingLeft: '15px' }>{ runThrough.call(@, value) }</div>
+            <div style={ paddingLeft: '15px' }>{ looop(value()) }</div>
           </div>
+        else
+          if typeof value is 'function'
+            <Tile onClick={ value } key={ key }>{ key }</Tile>
+          else
+            <div key={ uuid.v4() }>
+              <Tile key={ key }>{ key }</Tile>
+              <div style={ paddingLeft: '15px' }>{ runThrough.call(@, value) }</div>
+            </div>
+
+
+    looop = (obj, parent) ->
+      for key, value of obj
+
+        if _.isObject(value) and not _.isFunction(value)
+          <div key={ uuid.v4() }>
+            <Tile key={ key }>{ key }</Tile>
+            <div style={ paddingLeft: '15px' }>{ looop(value, key) }</div>
+          </div>
+        else
+          data = {}
+          data[parent] = key
+          <ControlsTile key={ key } onClick={ value } data={ data }>{ key }</ControlsTile>
 
     <div is="shell">
 
@@ -71,9 +94,11 @@ class Shell extends React.Component
       </div>
 
       <div is="right">
-        <List>
+        {<List>
           { runThrough.call(@props.this, @props.this.describe())  }
-        </List>
+        </List>}
+
+        { ###looop(build(@props.children.type.expectedProps)) ###}
       </div>
 
     </div>

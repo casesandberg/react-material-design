@@ -6,6 +6,8 @@ uuid = require('uuid')
 Shell = require('../../docs/controls/Shell')
 { Toolbar, Icon } = require('../components')
 
+build = require('../../docs/controls/sidebar')
+
 
 
 class ToolbarSpec extends React.Component
@@ -17,11 +19,13 @@ class ToolbarSpec extends React.Component
       children: [ <Icon name="star-outline" />, <Icon name="calendar-check" />, <Icon name="dots-vertical" /> ]
 
   describe: =>
-    'PROPS':
-      'align':
-        'left': => @setState( align: 'left' )
-        'right': => @setState( align: 'right' )
-        'justify': => @setState( align: 'justify' )
+    # 'PROPS':
+    #   'align':
+    #     'left': => @setState( align: 'left' )
+    #     'right': => @setState( align: 'right' )
+    #     'justify': => @setState( align: 'justify' )
+
+    'API': => build.call(@, Toolbar.expectedProps)
 
   render: ->
     <Shell this={ @ } width={ 300 }>

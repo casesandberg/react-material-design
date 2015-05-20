@@ -34,7 +34,7 @@ class TabsSpec extends React.Component
       'fixed mobile': => @setState( children: [ 'foo', 'bar', 'longer' ], width: 340, align: undefined)
       'left desktop': => @setState( children: [ 'foo', 'bar', 'way longer' ], width: 640, align: 'left' )
 
-    'API':
+    'PROPS':
       'children':
         '2': => @setState( children: [ 'foo', 'bar'] )
         '3': => @setState( children: [ 'foo', 'bar', 'longer'] )
