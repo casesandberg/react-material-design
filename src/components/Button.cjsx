@@ -11,6 +11,10 @@ Raised = require('./Raised')
 class Button extends React.Component
   css: css.inline
 
+  enhance = ->
+  enhance.PropTypes =
+    oneOf: ->
+
   @expectedProps =
     type:
       type: 'oneOf'
@@ -27,6 +31,28 @@ class Button extends React.Component
     background:
       type: 'string'
       examples: ['#2196f3', '#aeee00', '#333']
+
+  ###---###
+
+  @propTypes = enhance
+    type: ['oneOf', ['raised', 'flat', 'floating-action'], 'isRequired']
+    zDepth: ['oneOf', ['0', '1', '2', '3', '4', '5', 0, 1, 2, 3, 4, 5], ['0', '1', '2', '3', '4', '5']]
+    label: ['string', ['Button', 'Save \& Activate', 'Post to Facebook']]
+    background: ['string', ['#2196f3', '#aeee00', '#333']]
+
+  @propTypes = enhance
+    type: [ enhance.PropTypes.oneOf(['raised', 'flat', 'floating-action']), 'isRequired']
+    zDepth: [ enhance.PropTypes.oneOf(['0', '1', '2', '3', '4', '5', 0, 1, 2, 3, 4, 5]), ['0', '1', '2', '3', '4', '5']]
+    label: [ enhance.PropTypes.string, ['Button', 'Save \& Activate', 'Post to Facebook']]
+    background: [ enhance.PropTypes.string, ['#2196f3', '#aeee00', '#333']]
+
+  # Enhance, Upgrade,
+
+  # @propTypes =
+  #   zDepth: enhance.PropTypes.oneOf(['0', '1', '2', '3', '4', '5', 0, 1, 2, 3, 4, 5]).example(['0', '1', '2', '3', '4', '5'])
+  #   label: enhance.PropTypes.string.isRequired.example(['Button', 'Save \& Activate', 'Post to Facebook'])
+
+  ###---###
 
   @propTypes =
     type: React.PropTypes.oneOf(['raised', 'flat', 'floating-action'])
