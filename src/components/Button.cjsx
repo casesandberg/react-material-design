@@ -3,6 +3,7 @@
 React = require('react')
 css = require('react-css')
 
+# Control = require('react-ctrl')
 
 Raised = require('./Raised')
 
@@ -11,9 +12,14 @@ Raised = require('./Raised')
 class Button extends React.Component
   css: css.inline
 
-  enhance = ->
-  enhance.PropTypes =
-    oneOf: ->
+  # Change this to proper chaining
+
+  Control = ->
+  Control.PropTypes =
+    oneOf: -> React.PropTypes.oneOf.call( arguments ); arguments[0]
+    string: -> console.log 'string'; @
+
+  Control.PropTypes.string.example = -> console.log arguments[0]
 
   @expectedProps =
     type:
@@ -32,31 +38,9 @@ class Button extends React.Component
       type: 'string'
       examples: ['#2196f3', '#aeee00', '#333']
 
-  ###---###
-
-  @propTypes = enhance
-    type: ['oneOf', ['raised', 'flat', 'floating-action'], 'isRequired']
-    zDepth: ['oneOf', ['0', '1', '2', '3', '4', '5', 0, 1, 2, 3, 4, 5], ['0', '1', '2', '3', '4', '5']]
-    label: ['string', ['Button', 'Save \& Activate', 'Post to Facebook']]
-    background: ['string', ['#2196f3', '#aeee00', '#333']]
-
-  @propTypes = enhance
-    type: [ enhance.PropTypes.oneOf(['raised', 'flat', 'floating-action']), 'isRequired']
-    zDepth: [ enhance.PropTypes.oneOf(['0', '1', '2', '3', '4', '5', 0, 1, 2, 3, 4, 5]), ['0', '1', '2', '3', '4', '5']]
-    label: [ enhance.PropTypes.string, ['Button', 'Save \& Activate', 'Post to Facebook']]
-    background: [ enhance.PropTypes.string, ['#2196f3', '#aeee00', '#333']]
-
-  # Enhance, Upgrade,
-
-  # @propTypes =
-  #   zDepth: enhance.PropTypes.oneOf(['0', '1', '2', '3', '4', '5', 0, 1, 2, 3, 4, 5]).example(['0', '1', '2', '3', '4', '5'])
-  #   label: enhance.PropTypes.string.isRequired.example(['Button', 'Save \& Activate', 'Post to Facebook'])
-
-  ###---###
-
   @propTypes =
-    type: React.PropTypes.oneOf(['raised', 'flat', 'floating-action'])
-    label: React.PropTypes.string
+    type: Control.PropTypes.oneOf(['raised', 'flat', 'floating-action'])
+    label: Control.PropTypes.string.example(['foo', 'bar', 'baz'])
     background: React.PropTypes.string
     zDepth: React.PropTypes.oneOf(['0', '1', '2', '3', '4', '5', 0, 1, 2, 3, 4, 5])
 
@@ -101,6 +85,7 @@ class Button extends React.Component
   styles: -> @css()
 
   render: ->
+    # console.log Control.PropTypes
     # if @props.type is 'flat' and @props.zDepth? and @props.zDepth isnt '0'
     #   console.log '`Button` components that have a type of `flat` should not have a `zDepth`'
 

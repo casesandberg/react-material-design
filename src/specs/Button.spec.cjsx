@@ -4,7 +4,7 @@ React = require('react')
 uuid = require('uuid')
 
 { Button } = require('../components')
-{ Control } = require('react-ctrl')
+Control = require('react-ctrl')
 
 
 
