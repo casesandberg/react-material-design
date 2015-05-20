@@ -30,7 +30,7 @@ class ButtonSpec extends React.Component
     #
     # 'theme: blue': => @setState( type: 'raised', background: '#2196f3', color: '#fff' )
     # 'theme: white flat': => @setState( type: 'flat', color: '#333' )
-    # 
+    #
     # 'zDepth':
     #   '0': => @setState( zDepth: '0' )
     #   '1': => @setState( zDepth: '1' )
@@ -41,6 +41,12 @@ class ButtonSpec extends React.Component
     #   # '6': => @setState( zDepth: '6' )
 
     'API': => build.call(@, Button.expectedProps)
+
+  componentWillMount: ->
+    for key, value of Button.defaultProps
+      data = {}
+      data[key] = value
+      @setState(data)
 
   render: ->
     <Shell this={ @ }>

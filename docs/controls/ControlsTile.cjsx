@@ -5,6 +5,8 @@ css = require('react-css')
 
 { Tile } = require('../../src/components')
 
+_ = require('lodash')
+
 
 
 class ControlsTile extends React.Component
@@ -13,7 +15,12 @@ class ControlsTile extends React.Component
   handleClick: => @props.onClick(@props.data) if @props.onClick?
 
   render: ->
-    <div onClick={ @handleClick }>
+    # console.log @props.active
+    # console.log @props.data
+
+    underlined = true if _.findWhere([@props.active], @props.data)
+
+    <div onClick={ @handleClick } style={ textDecoration: 'underline' if underlined }>
       <Tile>{ @props.children }</Tile>
     </div>
 

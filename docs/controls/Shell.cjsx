@@ -50,7 +50,7 @@ class Shell extends React.Component
     for name, specComponent of @context.components
       names.push(name)
 
-    runThrough = (obj) ->
+    runThrough = (obj) =>
       for key, value of obj
         if key is 'API'
           <div key={ uuid.v4() }>
@@ -67,7 +67,7 @@ class Shell extends React.Component
             </div>
 
 
-    looop = (obj, parent) ->
+    looop = (obj, parent) =>
       for key, value of obj
 
         if _.isObject(value) and not _.isFunction(value)
@@ -78,7 +78,7 @@ class Shell extends React.Component
         else
           data = {}
           data[parent] = key
-          <ControlsTile key={ key } onClick={ value } data={ data }>{ key }</ControlsTile>
+          <ControlsTile key={ key } onClick={ value } data={ data } active={ @props.this.state }>{ key }</ControlsTile>
 
     <div is="shell">
 
