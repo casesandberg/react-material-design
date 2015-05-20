@@ -15,6 +15,7 @@ class Tile extends React.Component
         padding: '16px 0 16px 16px'
         display: 'flex'
         justifyContent: 'space-between'
+        color: @props.color
 
       primary:
         display: 'flex'
@@ -45,6 +46,15 @@ class Tile extends React.Component
     'divider':
       tile:
         boxShadow: 'inset 0 -1px 0 rgba(0,0,0,.12)'
+
+    'code':
+      content:
+        background: '#ddd'
+        padding: '4px 6px'
+        borderRadius: '4px'
+        fontSize: '14'
+        color: '#999'
+        boxShadow: 'inset 0 0 0 1px rgba(0,0,0,.03)'
 
   styles: -> @css
     'clickable': @props.onClick?

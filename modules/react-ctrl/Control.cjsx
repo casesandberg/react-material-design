@@ -81,7 +81,7 @@ class Control extends React.Component
       for key, value of obj
         if key is 'API'
           <div key={ uuid.v4() }>
-            <Tile key={ key }>{ key }</Tile>
+            <Tile key={ key } color="#999">{ key }</Tile>
             <div style={ paddingLeft: '15px' }>{ looop(value()) }</div>
           </div>
         else
@@ -99,7 +99,7 @@ class Control extends React.Component
 
         if _.isObject(value) and not _.isFunction(value)
           <div key={ uuid.v4() }>
-            <Tile key={ key }>{ key }</Tile>
+            <Tile key={ key } code>{ key }</Tile>
             <div style={ paddingLeft: '15px' }>{ looop(value, key) }</div>
           </div>
         else
@@ -135,7 +135,7 @@ class Control extends React.Component
         { presets = 0; presets++ for key of @props.presets;
         if presets > 1
           <div>
-            <Tile>PRESETS</Tile>
+            <Tile color="#999">PRESETS</Tile>
             <div style={ paddingLeft: '15px' }>
               { for name, data of @props.presets
                   change = (data) => @setState(data)
@@ -143,7 +143,7 @@ class Control extends React.Component
             </div>
           </div> }
 
-        <Tile>API</Tile>
+        <Tile color="#999">API</Tile>
         <div style={ paddingLeft: '15px' }>{ looop(build.call(@, @props.component.expectedProps)) }</div>
 
         {###<List>
