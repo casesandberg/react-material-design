@@ -29,6 +29,11 @@ icons =
 class Icon extends React.Component
   css: css.inline
 
+  @expectedProps =
+    name:
+      type: 'string'
+      examples: ['null', 'arrow-right', 'clock']
+
   @propTypes =
     name: React.PropTypes.string.isRequired
 

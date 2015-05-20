@@ -3,55 +3,27 @@
 React = require('react')
 uuid = require('uuid')
 
-Shell = require('../../docs/controls/Shell')
 { Button } = require('../components')
-
-build = require('../../docs/controls/sidebar')
+{ Control } = require('react-ctrl')
 
 
 
 class ButtonSpec extends React.Component
 
-  constructor: (props) ->
-    super props
-    @state =
+  presets:
+    'default':
       label: 'Button'
       background: '#2196f3'
       color: '#fff'
 
-  describe: =>
-    # 'PROPS':
-    #   'type':
-    #     'raised (default)': => @setState( type: 'raised' )
-    #     'flat': => @setState( type: 'flat' )
-    #     'floating-action': => @setState( type: 'floating-action' )
-
-    # 'label: foo': => @setState( label: 'foo' )
-    #
-    # 'theme: blue': => @setState( type: 'raised', background: '#2196f3', color: '#fff' )
-    # 'theme: white flat': => @setState( type: 'flat', color: '#333' )
-    #
-    # 'zDepth':
-    #   '0': => @setState( zDepth: '0' )
-    #   '1': => @setState( zDepth: '1' )
-    #   '2': => @setState( zDepth: '2' )
-    #   '3': => @setState( zDepth: '3' )
-    #   '4': => @setState( zDepth: '4' )
-    #   '5': => @setState( zDepth: '5' )
-    #   # '6': => @setState( zDepth: '6' )
-
-    'API': => build.call(@, Button.expectedProps)
-
-  componentWillMount: ->
-    for key, value of Button.defaultProps
-      data = {}
-      data[key] = value
-      @setState(data)
+    'Big Black Button':
+      type: 'raised'
+      label: 'SUCH A BIG BUTTON'
+      background: '#333'
+      color: '#fff'
 
   render: ->
-    <Shell this={ @ }>
-      <Button {...@state } />
-    </Shell>
+    <Control component={ Button } presets={ @presets } />
 
 
 
