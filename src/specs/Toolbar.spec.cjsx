@@ -4,7 +4,7 @@ React = require('react')
 uuid = require('uuid')
 
 { Toolbar, Icon } = require('../components')
-Control = require('react-ctrl')
+Control = require('../../modules/react-ctrl/Control')
 
 
 
@@ -16,7 +16,7 @@ class ToolbarSpec extends React.Component
       children: [ <Icon name="star-outline" />, <Icon name="calendar-check" />, <Icon name="dots-vertical" /> ]
 
   render: ->
-    <Control.Component component={ Toolbar } presets={ @presets } width={ 300 } />
+    <Control component={ Toolbar } presets={ @presets } width={ 300 } />
 
 
 

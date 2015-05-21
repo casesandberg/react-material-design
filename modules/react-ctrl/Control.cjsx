@@ -53,7 +53,7 @@ class Control extends React.Component
 
       centerWrap:
         alignSelf: 'center'
-        width: @props.width
+        width: @state.width || @props.width
 
       right:
         minWidth: '250px'
@@ -64,7 +64,7 @@ class Control extends React.Component
 
 
   componentWillMount: ->
-    states = _.merge(@props.component.defaultProps, @props.presets['default'])
+    states = _.merge({}, @props.component.defaultProps, @props.presets['default'])
     for key, value of states
       data = {}
       data[key] = value
@@ -72,7 +72,6 @@ class Control extends React.Component
 
 
   render: ->
-
     names = []
     for name, specComponent of @context.components
       names.push(name)
@@ -104,7 +103,7 @@ class Control extends React.Component
           </div>
         else
           data = {}
-          data[parent] = key
+          data[parent] = if key.split(',').length > 1 then key.split(',') else key # hacky, fix this
           <ControlsTile key={ key } onClick={ value } data={ data } active={ @state }>{ key }</ControlsTile>
 
     <div is="shell">
@@ -122,7 +121,10 @@ class Control extends React.Component
           <div is="centerFlex">
             <div is="centerWrap">
 
-              { React.createElement(@props.component, @state)}
+              { if @props.wrapper
+                  React.createElement(@props.wrapper[0], @props.wrapper[1], React.createElement(@props.component, @state))
+                else
+                  React.createElement(@props.component, @state) }
 
             </div>
           </div>

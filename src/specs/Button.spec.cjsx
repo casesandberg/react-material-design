@@ -23,7 +23,6 @@ class ButtonSpec extends React.Component
       color: '#fff'
 
   render: ->
-    console.log JSON.stringify Button.propTypes?.controlProps?(), null, 2
     <Control component={ Button } presets={ @presets } />
 
 

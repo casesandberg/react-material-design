@@ -2,16 +2,15 @@
 
 React = require('react')
 
-Shell = require('../../docs/controls/Shell')
 { List, Tile, Icon } = require('../components')
+Control = require('../../modules/react-ctrl/Control')
 
 
 
 class ListSpec extends React.Component
 
-  constructor: (props) ->
-    super props
-    @state =
+  presets:
+    'default':
       children: [
         <Tile divider={ true }>
           <Icon name="clock" />
@@ -29,14 +28,8 @@ class ListSpec extends React.Component
         </Tile>
       ]
 
-  describe: ->
-    'PRESET':
-      'none': => console.log 'none' # @setState( children: [<Icon name="clock" />,<div>Content</div>], secondaryAction: <Icon name="arrow-right" />)
-
   render: ->
-    <Shell this={ @ } width={ 300 }>
-      <List {...@state } />
-    </Shell>
+    <Control component={ List } presets={ @presets } width={ 300 } />
 
 
 

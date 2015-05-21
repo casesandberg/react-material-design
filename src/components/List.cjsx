@@ -8,6 +8,9 @@ css = require('react-css')
 class List extends React.Component
   css: css.inline
 
+  @propTypes =
+    children: React.PropTypes.node
+
   classes: ->
     'default':
       list:
@@ -17,10 +20,11 @@ class List extends React.Component
 
   render: ->
     <div is="list">
-      { for child, i in @props.children
-        <div is="row" key={ i }>
-          { child }
-        </div> }
+      { if @props.children
+          for child, i in @props.children
+            <div is="row" key={ i }>
+              { child }
+            </div> }
     </div>
 
 

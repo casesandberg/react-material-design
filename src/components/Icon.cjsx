@@ -2,6 +2,8 @@
 
 React = require('react')
 css = require('react-css')
+Control = require('react-ctrl')
+
 
 
 icons =
@@ -29,13 +31,8 @@ icons =
 class Icon extends React.Component
   css: css.inline
 
-  @expectedProps =
-    name:
-      type: 'string'
-      examples: ['null', 'arrow-right', 'clock']
-
-  @propTypes =
-    name: React.PropTypes.string.isRequired
+  @propTypes = Control.enhance
+    name: Control.PropTypes.string.example(['null', 'arrow-right', 'clock'])
 
   classes: ->
     'default':

@@ -2,19 +2,15 @@
 
 React = require('react')
 css = require('react-css')
+Control = require('react-ctrl')
 
 
 
 class Toolbar extends React.Component
   css: css.inline
 
-  @expectedProps =
-    align:
-      type: 'oneOf'
-      values: ['left', 'right', 'justify']
-
-  @propTypes =
-    align: React.PropTypes.oneOf(['left', 'right', 'justify'])
+  @propTypes = Control.enhance
+    align: Control.PropTypes.oneOf(['left', 'right', 'justify']).example(['left', 'right', 'justify'])
 
   @defaultProps =
     align: 'left'

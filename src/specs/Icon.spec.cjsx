@@ -4,7 +4,7 @@ React = require('react')
 uuid = require('uuid')
 
 { Icon } = require('../components')
-Control = require('react-ctrl')
+Control = require('../../modules/react-ctrl/Control')
 
 
 
@@ -15,7 +15,7 @@ class IconSpec extends React.Component
       name: 'arrow-right'
 
   render: ->
-    <Control.Component component={ Icon } presets={ @presets } />
+    <Control component={ Icon } presets={ @presets } />
 
 
 

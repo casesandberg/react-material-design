@@ -2,8 +2,9 @@
 
 React = require('react')
 
-Shell = require('../../docs/controls/Shell')
 { Tabs, Raised } = require('../components')
+Control = require('../../modules/react-ctrl/Control')
+
 
 
 context =
@@ -12,45 +13,22 @@ context =
   theme: 'light'
 
 
+
 class TabsSpec extends React.Component
 
-
-
-  constructor: (props) ->
-    super props
-    @state =
+  presets:
+    'default':
       children: [ 'foo', 'bar', 'longer' ]
       width: 340
-      onSelect: (tab) => @changeTab(tab)
-      # style:
-      #   indicatorColor: context.accentColor
-      #   activeLabelColor: context.accentColor
+      align: undefined
 
-  changeTab: (tab) => @setState( selectedTab: tab )
-
-
-  describe: ->
-    'PRESET':
-      'fixed mobile': => @setState( children: [ 'foo', 'bar', 'longer' ], width: 340, align: undefined)
-      'left desktop': => @setState( children: [ 'foo', 'bar', 'way longer' ], width: 640, align: 'left' )
-
-    'PROPS':
-      'children':
-        '2': => @setState( children: [ 'foo', 'bar'] )
-        '3': => @setState( children: [ 'foo', 'bar', 'longer'] )
-        '5': => @setState( children: [ 'foo', 'bar', 'way longer', 'bar', 'foo' ] )
-
-      'align':
-        'fixed (default)': => @setState( align: undefined )
-        'left': => @setState( align: 'left' )
-        'center': => @setState( align: 'center' )
+    'left desktop':
+      children: [ 'foo', 'bar', 'way longer' ]
+      width: 640
+      align: 'left'
 
   render: ->
-    <Shell this={ @ } width={ @state.width }>
-      <Raised background={ context.primaryColor } square >
-        <Tabs {...@state } />
-      </Raised>
-    </Shell>
+    <Control component={ Tabs } wrapper={[ Raised, {background: context.primaryColor, square: true} ]} presets={ @presets } />
 
 
 
