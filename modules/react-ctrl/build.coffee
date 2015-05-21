@@ -3,10 +3,18 @@ module.exports = (obj) ->
 
   for key, value of obj
     tree[key] = {}
-    if value.type is 'oneOf'
-      for value, i in value.values
-        tree[key][value] = (data) => @setState(data)
-    if value.type is 'string' and value.examples?
-      for example in value.examples
-        tree[key][example] = (data) => @setState(data)
+
+    if value.length
+
+      for thing in value
+        tree[key][thing] = (data) => @setState(data)
+
+    else
+
+      if value.type is 'oneOf'
+        for value, i in value.values
+          tree[key][value] = (data) => @setState(data)
+      if value.type is 'string' and value.examples?
+        for example in value.examples
+          tree[key][example] = (data) => @setState(data)
   tree

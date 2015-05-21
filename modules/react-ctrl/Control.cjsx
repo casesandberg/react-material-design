@@ -144,7 +144,11 @@ class Control extends React.Component
           </div> }
 
         <Tile color="#999">API</Tile>
-        <div style={ paddingLeft: '15px' }>{ looop(build.call(@, @props.component.expectedProps)) }</div>
+        { if @props.component.propTypes?.controlProps?()?
+            <div style={ paddingLeft: '15px' }>{ looop(build.call(@, @props.component.propTypes.controlProps())) }</div>
+          else
+           <div style={ paddingLeft: '15px' }>{ looop(build.call(@, @props.component.expectedProps)) }</div> }
+
 
         {###<List>
           { runThrough.call(@props.parent, @props.parent.describe())  }

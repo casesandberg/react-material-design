@@ -5,7 +5,6 @@ Control = {}
 Control.build = require('./build')
 Control.PropTypes = require('./src/PropTypes')
 
-Control.enhance = (obj) ->
-  obj
+Control.enhance = require('./src/enhance')
 
 module.exports = Control

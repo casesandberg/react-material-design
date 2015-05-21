@@ -1,25 +1,27 @@
 
-PropTypes = -> @
+PropTypes = =>
 
 
 PropTypes.string = ->
-  @type = 'string'
-  @
+  type: 'string'
 
 PropTypes.string.example = (array) ->
-  @examples = array
-  @
+  type: 'string'
+  examples: array
 
 
 
-PropTypes.oneOf = (array) ->
+PropTypes.oneOf = (array) =>
+  # Eventually fix this, defaulting to adding example for now
   @type = 'oneOf'
   @value = array
+  # console.log @
   @
 
 PropTypes.oneOf().example = (array) ->
-  @examples = array
-  @
+  type: 'oneOf'
+  value: @value
+  examples: array
 
 
 module.exports = PropTypes
