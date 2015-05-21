@@ -43,7 +43,10 @@ var config = {
       new webpack.HotModuleReplacementPlugin({ quiet: true }),
       new webpack.NoErrorsPlugin()
     ],
-    devtool: 'eval'
+    devtool: 'eval',
+    alias: {
+      react: path.join(__dirname, 'node_modules', 'react')
+    }
   }
 };
 

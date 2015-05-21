@@ -15,7 +15,7 @@ class IconSpec extends React.Component
       name: 'arrow-right'
 
   render: ->
-    <Control component={ Icon } presets={ @presets } />
+    <Control.Component component={ Icon } presets={ @presets } />
 
 
 
