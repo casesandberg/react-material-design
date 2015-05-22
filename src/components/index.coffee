@@ -9,3 +9,4 @@ module.exports =
   Tabs: require('./Tabs')
   Tab: require('./Tab')
   Checkbox: require('./Checkbox')
+  Subheader: require('./Subheader')

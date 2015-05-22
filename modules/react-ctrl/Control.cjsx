@@ -4,7 +4,7 @@ React = require('react')
 css = require('react-css')
 uuid = require('uuid')
 
-{ Tile, List, Raised } = require('../../src/components')
+{ Tile, List, Raised, Subheader } = require('../../src/components')
 ControlsTile = require('../../docs/controls/ControlsTile')
 
 
@@ -98,8 +98,10 @@ class Control extends React.Component
 
         if _.isObject(value) and not _.isFunction(value)
           <div key={ uuid.v4() }>
-            <Tile key={ key } code>{ key }</Tile>
-            { looop(value, key) }
+            <div style={ marginLeft: '16px', marginBottom: '16px' }>
+              <Subheader code>{ key }</Subheader>
+              { looop(value, key) }
+            </div>
           </div>
         else
           data = {}
@@ -137,7 +139,9 @@ class Control extends React.Component
         { presets = 0; presets++ for key of @props.presets;
         if presets > 1
           <div>
-            <Tile color="#999">PRESETS</Tile>
+            <Tile>
+              <Subheader>PRESETS</Subheader>
+            </Tile>
             <div style={ paddingLeft: '15px' }>
               { for name, data of @props.presets
                   change = (data) => @setState(data)
@@ -145,11 +149,10 @@ class Control extends React.Component
             </div>
           </div> }
 
-        <Tile color="#999">API</Tile>
-        { if @props.component.propTypes?.controlProps?()?
-            <div style={ paddingLeft: '15px' }>{ looop(build.call(@, @props.component.propTypes.controlProps())) }</div>
-          else
-           <div style={ paddingLeft: '15px' }>{ looop(build.call(@, @props.component.expectedProps)) }</div> }
+        <Tile>
+          <Subheader>PROPS</Subheader>
+        </Tile>
+        { looop(build.call(@, @props.component?.propTypes?.controlProps?())) }
 
 
         {###<List>
