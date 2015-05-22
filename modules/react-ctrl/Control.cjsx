@@ -99,11 +99,11 @@ class Control extends React.Component
         if _.isObject(value) and not _.isFunction(value)
           <div key={ uuid.v4() }>
             <Tile key={ key } code>{ key }</Tile>
-            <div style={ paddingLeft: '15px' }>{ looop(value, key) }</div>
+            { looop(value, key) }
           </div>
         else
           data = {}
-          data[parent] = if key.split(',').length > 1 then key.split(',') else key # hacky, fix this
+          data[parent] = if key.split(',').length > 1 then key.split(',') else if key is 'true' then true else if key is 'false' then false else key # hacky, fix this
           <ControlsTile key={ key } onClick={ value } data={ data } active={ @state }>{ key }</ControlsTile>
 
     <div is="shell">

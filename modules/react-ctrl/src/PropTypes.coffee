@@ -10,6 +10,13 @@ PropTypes.string.example = (array) ->
   examples: array
 
 
+PropTypes.bool = ->
+PropTypes.bool.example = (array) ->
+  type: 'bool'
+  examples: array
+
+
+
 PropTypes.array = ->
 PropTypes.array.example = (array) ->
   type: 'array'

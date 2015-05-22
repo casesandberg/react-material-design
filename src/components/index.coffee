@@ -8,3 +8,4 @@ module.exports =
   List: require('./List')
   Tabs: require('./Tabs')
   Tab: require('./Tab')
+  Checkbox: require('./Checkbox')

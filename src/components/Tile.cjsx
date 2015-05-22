@@ -56,6 +56,12 @@ class Tile extends React.Component
         color: '#999'
         boxShadow: 'inset 0 0 0 1px rgba(0,0,0,.03)'
 
+    'condensed':
+      sidebar:
+        minWidth: '28px'
+        maxWidth: '28px'
+        flexBasis: '28'
+
   styles: -> @css
     'clickable': @props.onClick?
 

@@ -27,6 +27,12 @@ icons =
     <path d="M19,19H5V8H19M19,3H18V1H16V3H8V1H6V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3M16.53,11.06L15.47,10L10.59,14.88L8.47,12.76L7.41,13.82L10.59,17L16.53,11.06Z" />
 </svg>'
 
+  'checkmark-marked-deconstructed': '<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+  	 width="18px" height="18px" viewBox="-290 388 18 18" enable-background="new -290 388 18 18" xml:space="preserve">
+  <path d="M-283,402l-5-5l1.4-1.4l3.6,3.6l7.6-7.6l1.4,1.4"/>
+  </svg>
+'
+
 
 class Icon extends React.Component
   css: css.inline
@@ -34,13 +40,16 @@ class Icon extends React.Component
   @propTypes = Control.enhance
     name: Control.PropTypes.string.example(['null', 'arrow-right', 'clock'])
 
+  @defaultProps =
+    fill: '#bbb'
+
   classes: ->
     'default':
       icon:
         position: 'relative'
 
       svg:
-        fill: '#bbb'
+        fill: @props.fill
         transition: 'fill 200ms linear'
 
     'tap-area':

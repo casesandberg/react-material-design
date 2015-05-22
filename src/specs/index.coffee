@@ -5,3 +5,4 @@ module.exports =
   Toolbar: require('./Toolbar.spec')
   List: require('./List.spec')
   Tabs: require('./Tabs.spec')
+  Checkbox: require('./Checkbox.spec')
