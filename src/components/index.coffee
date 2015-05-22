@@ -10,3 +10,4 @@ module.exports =
   Tab: require('./Tab')
   Checkbox: require('./Checkbox')
   Subheader: require('./Subheader')
+  Slider: require('./Slider')

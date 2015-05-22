@@ -6,3 +6,4 @@ module.exports =
   List: require('./List.spec')
   Tabs: require('./Tabs.spec')
   Checkbox: require('./Checkbox.spec')
+  Slider: require('./Slider.spec')
