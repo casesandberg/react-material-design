@@ -113,7 +113,10 @@ class Control extends React.Component
       <div is="left">
         <List>
           { for lable, i in names
-              <Tile key={ i } controls={ true } onClick={ (e, child) => @context.updateComponent(child) }>{ lable }</Tile> }
+              active = if lable is /function (.+)\(/.exec(@props.component.toString())[1] then true else false
+              <div key={ i } style={ color: if active then '#4A90E2' else '#666' }>
+                <Tile controls={ true } onClick={ (e, child) => @context.updateComponent(child) }>{ lable }</Tile>
+              </div> }
         </List>
       </div>
 
