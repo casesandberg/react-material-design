@@ -12,7 +12,7 @@ class ToolbarSpec extends React.Component
 
   presets:
     'default':
-      align: 'left'
+      align: 'justify'
       children: [ <Icon name="star-outline" />, <Icon name="calendar-check" />, <Icon name="dots-vertical" /> ]
 
   render: ->
