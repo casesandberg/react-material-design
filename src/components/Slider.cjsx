@@ -49,6 +49,18 @@ class Slider extends React.Component
         transform: 'scale(1.5)'
         boxShadow: 'inset 0 0 0 2px #999'
 
+    'left':
+      left:
+        width: '24px'
+        height: '24px'
+        marginRight: '20px'
+
+    'right':
+      right:
+        width: '24px'
+        height: '24px'
+        marginLeft: '20px'
+
   styles: -> @css
     'active': @state.active
 

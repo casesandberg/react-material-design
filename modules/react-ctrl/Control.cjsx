@@ -152,6 +152,12 @@ class Control extends React.Component
             </div>
           </div> }
 
+        {### TODO:
+         MAKE IT SO THINGS THAT ARENT REQUIRED HAVE A 'NONE' FIElD
+         ADD INPUT TYPE TO THE RIGHT OF THE PROP NAME
+         ADD SOME SORT OF REQUIRED IMBELISHMENT FOR PROPS THAT ARE
+        ###}
+
         <Tile>
           <Subheader>PROPS</Subheader>
         </Tile>
