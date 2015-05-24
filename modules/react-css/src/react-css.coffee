@@ -1,5 +1,7 @@
-merge = require('merge')
+'use strict'
+
 React = require('react')
+merge = require('merge')
 _ = require('lodash')
 
 
@@ -8,9 +10,10 @@ CSS in React
 ###
 css = (styles) -> _css(styles)
 css.merge = (styles) -> _merge(styles)
-css.replace = (css, customFuncs) -> _replace(css, customFuncs)
+css.mixins = (css, customFuncs) -> _mixins(css, customFuncs)
 css.resolve = -> _resolve.apply @, arguments
 # css.mixin is down below
+
 
 
 ###
@@ -18,50 +21,33 @@ Inline CSS function. This is the half-way point until multiple inheritance exist
 @param declaredClasses: Object{ 'class-name': true / false }
 @returns object
 ###
+
 css.inline = (declaredClasses) ->
   arrayOfStyles = []
 
-  if not @classes? then throw console.warn "Make sure you have this.classes defined on `#{ @constructor.name }`"
+  if not @classes?
+    throw console.warn "Define this.classes on `#{ @constructor.name }`"
 
-  pushStyle = (name, options) =>
+  activateClass = (name, options) =>
     if @classes()[name]?
       arrayOfStyles.push(@classes()[name])
     else if name and options?.warn is true
-      console.warn "The class `#{name}` does not exist on `#{@constructor.name}`"
+      console.warn "The `#{name}` css class does not exist on `#{@constructor.name}`"
 
-  pushStyle('default')
+  activateClass('default')
 
-  for prop, value of _.omit(@props, ['style', 'children'])
-    if not _.isObject(value)
-      if value is true
-        pushStyle(prop)
-      else if value
-        pushStyle("#{ prop }-#{ value }")
-      else
-        pushStyle("#{ prop }-false")
-
-  pushStyle(name, warn:true) for name, condition of declaredClasses when condition is true
-
-  for key, value of @props?.style
-    if key is 'class'
-      pushStyle(name, warn:true) for name in value.split(' ')
-
+  for prop, value of @props when not _.isObject(value)
+    if value is true
+      activateClass(prop)
+    else if value
+      activateClass("#{ prop }-#{ value }")
     else
-      if @constructor.publicStyles?
-        if not @constructor.publicStyles[key]
-          console.warn "`#{ key }` is not defined as a public style on `#{@constructor.name}`"
+      activateClass("#{ prop }-false")
 
+  for name, condition of declaredClasses when condition is true
+    activateClass(name, warn:true)
 
-
-        # console.log @propTypes?.style
-
-        # for key, value of @propTypes?.style
-        #   console.log key
-        #   console.log value
-      # console.warn "You shouldnt be defining CSS for children components in `#{ @constructor.name }`, please pass down a class name instead."
-      # arrayOfStyles.push({ "#{ key }": value })
-
-  pushStyle('public')
+  activateClass('public')
 
   return _css(arrayOfStyles)
 
@@ -74,41 +60,43 @@ Do all the css things
 ###
 _css = (styles) ->
   merged = _merge(styles)
-  return _replace(merged)
+  return _mixins(merged)
 
 
 
 ###
 Step through a style object and replace any custom properties as defined
 @param styleObject: An object of styles
+@param customFuncs: An object of functions that
 @returns object
 ###
-_replace = (styleObject, customFuncs) ->
+_mixins = (styleObject, customFuncs) ->
 
   # These custom props will eventually live in a file or config somewhere
-  customProps = customProps || customFuncs || replaceProps || {}
-  replaced = {}
+  customProps = customFuncs || localProps
+  obj = {}
 
   for key, value of styleObject
 
     # If its an object
-    if typeof value is 'object' and not Array.isArray(value)
+    if _.isObject(value) and not _.isArray(value)
       # Lets go ahead and run again
-      replaced[key] = _replace(value, customFuncs)
+      obj[key] = _mixins(value, customFuncs)
 
     else
       # Check to see if a custom prop exists for it
       if customProps[key]?
-
-        for newKey, newValue of customProps[key](value)
-          replaced[newKey] = newValue
+        # let loop though and save the results from the function
+        customResults = customProps[key](value)
+        for customKey, customValue of customResults
+          obj[customKey] = customValue
 
       # If not, just copy it as-is
       else
-        replaced[key] = value
+        obj[key] = value
 
 
-  return replaced
+  return obj
 
 
 
@@ -120,7 +108,7 @@ Merges an array of objects together
 _merge = (thingsToBeMerged) ->
 
   # If its an object, lets just return it
-  if typeof thingsToBeMerged is 'object' and not Array.isArray(thingsToBeMerged)
+  if _.isObject(thingsToBeMerged) and not _.isArray(thingsToBeMerged)
     return thingsToBeMerged
 
   # If the array only has one object in it, return it
@@ -150,10 +138,10 @@ _resolve = (defaultValue, possibleValues...) ->
 
 
 ###
-Custom Props for the _replace function
+Custom Props for the _mixins function
 These custom props will eventually live in a file or config somewhere
 ###
-replaceProps =
+localProps =
   borderRadius: (value) ->
     msBorderRadius: value
     MozBorderRadius: value

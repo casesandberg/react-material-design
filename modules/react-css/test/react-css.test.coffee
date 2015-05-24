@@ -5,7 +5,7 @@ React = require('react')
 
 
 describe 'css', ->
-  it 'should marge and expand css', ->
+  it 'marge and expand css', ->
     before = [
       page:
         position: 'relative'
@@ -44,7 +44,7 @@ describe 'css', ->
 
 
 
-  it 'should be able to handle conditional styles', ->
+  it 'handle conditional styles', ->
 
     before = [
       page:
@@ -84,7 +84,7 @@ describe 'css', ->
 
 describe 'Resolve', ->
 
-  it 'should resolve a basic list of arguments', ->
+  it 'resolve a basic list of arguments', ->
     before =
       margin: css.resolve '14px',
                           '20px' if true
@@ -95,7 +95,7 @@ describe 'Resolve', ->
 
 
 
-  it 'should resolve a long list of arguments', ->
+  it 'resolve a long list of arguments', ->
     before =
       margin: css.resolve '14px',
                           '20px' if true,
@@ -111,7 +111,7 @@ describe 'Resolve', ->
 
 
 
-  it 'should resolve return the default value if everything else is false', ->
+  it 'return the default value if everything else is false', ->
     before =
       margin: css.resolve '14px',
                           '20px' if false
@@ -124,7 +124,7 @@ describe 'Resolve', ->
 
 describe 'Merge', ->
 
-  it 'should return the same object if it is passed one', ->
+  it 'return the same object if it is passed one', ->
     before =
       foo: 'bar'
       baz: 'fin'
@@ -137,19 +137,17 @@ describe 'Merge', ->
 
 
 
-  it 'should merge objects passed through array', ->
+  it 'merge objects passed through array', ->
 
-    base =
+    before = [
       card:
         background: '#fff'
         margin: '0 6px'
-
-    hover =
+    ,
       card:
         margin: '0'
         boxShadow: '0 1px 4px rgba(0,0,0,.24)'
-
-    before = [base, hover]
+    ]
 
     after =
       card:
@@ -164,7 +162,7 @@ describe 'Merge', ->
 describe 'Replace', ->
 
   # Double check that it doesnt touch anything unless it matches
-  it 'should return the same object if nothing matches', ->
+  it 'return the same object if nothing matches', ->
     before =
       card:
         position: 'absolute'
@@ -173,12 +171,12 @@ describe 'Replace', ->
       card:
         position: 'absolute'
 
-    expect(css.replace(before)).to.eql(after)
+    expect(css.mixins(before)).to.eql(after)
 
 
 
   # In the case of a style being passed down to a child component
-  it 'should skip selectors whos values are strings or arrays', ->
+  it 'skip selectors whos values are strings or arrays', ->
     before =
       button: 'bigger'
 
@@ -191,12 +189,12 @@ describe 'Replace', ->
     afterArray =
       button: ['bigger']
 
-    expect(css.replace(before)).to.eql(after)
-    expect(css.replace(beforeArray)).to.eql(afterArray)
+    expect(css.mixins(before)).to.eql(after)
+    expect(css.mixins(beforeArray)).to.eql(afterArray)
 
 
 
-  it 'should expand basic custom props where the output is just values', ->
+  it 'expand basic custom props where the output is just values', ->
 
     before =
       card:
@@ -210,11 +208,11 @@ describe 'Replace', ->
         WebkitBorderRadius: '2'
         borderRadius: '2'
 
-    expect(css.replace(before)).to.eql(after)
+    expect(css.mixins(before)).to.eql(after)
 
 
 
-  it 'should expand custom props where the output is a complex eval', ->
+  it 'expand custom props where the output is a complex eval', ->
 
     before =
       card:
@@ -228,12 +226,12 @@ describe 'Replace', ->
         bottom: '0'
         left: '0'
 
-    expect(css.replace(before)).to.eql(after)
+    expect(css.mixins(before)).to.eql(after)
 
 
   # this was a fix for checking that it didnt replace other stuff. Write a better
   # test for the future
-  it 'should expand custom props where the output is a complex eval v2', ->
+  it 'expand custom props where the output is a complex eval v2', ->
 
     before =
       card:
@@ -249,11 +247,11 @@ describe 'Replace', ->
         left: '0'
         background: '#fff'
 
-    expect(css.replace(before)).to.eql(after)
+    expect(css.mixins(before)).to.eql(after)
 
 
 
-  it 'should be able to step through and epand a compex array properly', ->
+  it 'be able to step through and epand a compex array properly', ->
     before =
       body:
         sidebar:
@@ -270,11 +268,11 @@ describe 'Replace', ->
             bottom: '0'
             left: '0'
 
-    expect(css.replace(before)).to.eql(after)
+    expect(css.mixins(before)).to.eql(after)
 
 
 
-  it 'should be able to pass through functions to transform', ->
+  it 'be able to pass through functions to transform', ->
 
     customFunc =
       AddTogetherMargin: (value) ->
@@ -294,22 +292,13 @@ describe 'Replace', ->
       body:
         margin: 4
 
-    expect(css.replace(before, customFunc)).to.eql(after)
+    expect(css.mixins(before, customFunc)).to.eql(after)
 
 
 
 describe 'React Inline', ->
 
-  # it 'should warn you if there are no classes', ->
-  #
-  #   before = undefined
-  #
-  #   after = {}
-  #
-  #   expect(css.inline.call(@, before)).to.throw()
-
-
-  it 'should return a css object from a set of true class names', ->
+  it 'return a css object from a set of true class names', ->
 
     @classes = ->
       'base':
@@ -328,7 +317,7 @@ describe 'React Inline', ->
 
 
 
-  it 'should return a css object from a bunch of class names', ->
+  it 'return a css object from a bunch of class names', ->
 
     @classes = ->
       'base':
@@ -356,7 +345,8 @@ describe 'React Inline', ->
     expect(css.inline.call(@, before)).to.eql(after)
 
 
-  it 'should include the `default` class', ->
+
+  it 'include the `default` class', ->
 
     @classes = ->
       'default':
@@ -370,7 +360,8 @@ describe 'React Inline', ->
     expect(css.inline.call(@)).to.eql(after)
 
 
-  it 'should include the `public` class at the end', ->
+
+  it 'include the `public` class at the end', ->
 
     @classes = ->
       'public':
@@ -391,120 +382,8 @@ describe 'React Inline', ->
     expect(css.inline.call(@, before)).to.eql(after)
 
 
-  it 'should grab props.style and include it', ->
-    @props =
-      style:
-        class: 'outlined'
 
-    @classes = ->
-      'base':
-        card:
-          position: 'absolute'
-
-      'outlined':
-        card:
-          border: '2px solid #aeee00'
-
-    before =
-      'base': true
-
-    after =
-      card:
-        position: 'absolute'
-        border: '2px solid #aeee00'
-
-    expect(css.inline.call(@, before)).to.eql(after)
-
-
-  it 'should grab any additional props.style css and include it', ->
-    @props =
-      style:
-        class: 'outlined'
-        display: 'none'
-
-    @classes = ->
-      'base':
-        card:
-          position: 'absolute'
-
-      'outlined':
-        card:
-          border: '2px solid #aeee00'
-
-      'public':
-        card:
-          display: @props.style.display
-
-    before =
-      'base': true
-
-    after =
-      card:
-        position: 'absolute'
-        border: '2px solid #aeee00'
-        display: 'none'
-
-    expect(css.inline.call(@, before)).to.eql(after)
-
-
-
-  it 'if this.publicStyles is defined, only include css its defined', ->
-    @publicStyles =
-      background: React.PropTypes.string
-
-    @props =
-      style:
-        background: '#fff'
-        color: 'red'
-
-    @classes = ->
-      'public':
-        card:
-          background: @props.style.background
-          color: @props.style.color
-
-    after =
-      card:
-        background: '#fff'
-        color: 'red'
-
-    expect(css.inline.call(@)).to.eql(after)
-
-
-
-  it 'should seperate class names and call them in order', ->
-    @props =
-      style:
-        class: 'outlined dark-text'
-
-    @classes = ->
-      'base':
-        card:
-          position: 'absolute'
-
-      'dark-text':
-        card:
-          color: '#333'
-
-      'outlined':
-        card:
-          color: '#aeee00'
-          border: '2px solid #aeee00'
-
-    before =
-      'base': true
-
-    after =
-      card:
-        position: 'absolute'
-        color: '#333'
-        border: '2px solid #aeee00'
-
-    expect(css.inline.call(@, before)).to.eql(after)
-
-
-
-  it 'should check if props match any class names and include them if they do', ->
+  it 'include any true props that match class names', ->
     @props =
       isSelected: true
 
@@ -527,7 +406,8 @@ describe 'React Inline', ->
     expect(css.inline.call(@, before)).to.eql(after)
 
 
-  it 'should check if props and values match a class', ->
+
+  it 'check if props and values match a class', ->
     @props =
       isSelected: false
       zDepth: 2
