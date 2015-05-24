@@ -1,7 +1,7 @@
 {
   "name": "react-control",
   "version": "0.0.0",
-  "main": "index.coffee",
+  "main": "src/index.coffee",
   "dependencies": {
     "lodash": "^3.6.0",
     "merge": "^1.2.0",

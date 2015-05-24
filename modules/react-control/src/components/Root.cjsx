@@ -3,9 +3,11 @@
 React = require('react')
 css = require('react-css')
 
+Control = require('react-control')
 
 
-class Root extends React.Component
+
+module.exports = class Root extends React.Component
   css: css.inline
 
   @childContextTypes:
@@ -34,7 +36,5 @@ class Root extends React.Component
       active: localStorage.getItem( 'SelectedComponent' ) || 'List'
 
   render: ->
+    @componentsList = @props.components
     React.createElement( @props.components[ @state.active ] )
-
-
-module.exports = Root

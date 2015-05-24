@@ -4,18 +4,18 @@ React = require('react')
 css = require('react-css')
 uuid = require('uuid')
 
-{ Tile, List, Raised, Subheader } = require('../../src/components')
-ControlsTile = require('../../docs/controls/ControlsTile')
+{ Tile, List, Raised, Subheader } = require('../../../../src/components')
+ControlTile = require('./ControlTile')
+#
+#
+#
+# _ = require('lodash')
+#
+build = require('../build')
 
 
 
-_ = require('lodash')
-
-build = require('./build')
-
-
-
-class Control extends React.Component
+module.exports = class Control extends React.Component
   css: css.inline
 
   @contextTypes:
@@ -106,7 +106,7 @@ class Control extends React.Component
         else
           data = {}
           data[parent] = if key.split(',').length > 1 then key.split(',') else if key is 'true' then true else if key is 'false' then false else key # hacky, fix this
-          <ControlsTile key={ key } onClick={ value } data={ data } active={ @state }>{ key }</ControlsTile>
+          <ControlTile key={ key } onClick={ value } data={ data } active={ @state }>{ key }</ControlTile>
 
     <div is="shell">
 
@@ -148,7 +148,7 @@ class Control extends React.Component
             <div style={ paddingLeft: '15px' }>
               { for name, data of @props.presets
                   change = (data) => @setState(data)
-                  <ControlsTile key={ name } onClick={ change } data={ data } active={ @state }>{ name }</ControlsTile> }
+                  <ControlTile key={ name } onClick={ change } data={ data } active={ @state }>{ name }</ControlTile> }
             </div>
           </div> }
 
@@ -172,7 +172,3 @@ class Control extends React.Component
       </div>
 
     </div>
-
-
-
-module.exports = Control

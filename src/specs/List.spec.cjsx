@@ -3,7 +3,7 @@
 React = require('react')
 
 { List, Tile, Icon } = require('../components')
-Control = require('../../modules/react-control/Control')
+Control = require('../../modules/react-control/src/components/Control')
 
 
 

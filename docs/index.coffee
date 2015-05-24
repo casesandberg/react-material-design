@@ -1,21 +1,14 @@
 'use strict'
 
 React = require('react')
+Control = require('react-control')
 
 require('../node_modules/normalize.css/normalize.css')
-
-Button = require('../src/specs/Button.spec')
-
-Root = require('./controls/Root')
-
 specs = require('../src/specs')
-
-# for name, specComponent of specs
-#   console.log name
 
 
 
 React.render(
-  React.createElement(Root, components: specs),
+  React.createElement(Control.Root, components: specs),
   document.getElementById('root')
 )

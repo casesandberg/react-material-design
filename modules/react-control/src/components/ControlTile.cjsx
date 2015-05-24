@@ -3,13 +3,13 @@
 React = require('react')
 css = require('react-css')
 
-{ Tile, Checkbox } = require('../../src/components')
+{ Tile, Checkbox } = require('../../../../src/components')
 
 _ = require('lodash')
 
 
 
-class ControlsTile extends React.Component
+class ControlTile extends React.Component
   css: css.inline
 
   handleClick: => @props.onClick(@props.data) if @props.onClick?
@@ -25,4 +25,4 @@ class ControlsTile extends React.Component
     </div>
 
 
-module.exports = ControlsTile
+module.exports = ControlTile
