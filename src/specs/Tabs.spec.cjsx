@@ -3,7 +3,7 @@
 React = require('react')
 
 { Tabs, Raised } = require('../components')
-Control = require('../../modules/react-ctrl/Control')
+Control = require('../../modules/react-control/Control')
 
 
 

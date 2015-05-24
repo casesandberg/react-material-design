@@ -2,7 +2,7 @@
 
 React = require('react')
 css = require('react-css')
-Control = require('react-ctrl')
+Control = require('react-control')
 
 Icon = require('./Icon')
 
