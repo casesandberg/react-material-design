@@ -7,3 +7,4 @@ module.exports =
   Tabs: require('./Tabs.spec')
   Checkbox: require('./Checkbox.spec')
   Slider: require('./Slider.spec')
+  TextField: require('./TextField.spec')

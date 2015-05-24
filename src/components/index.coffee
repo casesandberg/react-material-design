@@ -11,3 +11,4 @@ module.exports =
   Checkbox: require('./Checkbox')
   Subheader: require('./Subheader')
   Slider: require('./Slider')
+  TextField: require('./TextField')

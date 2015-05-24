@@ -5,7 +5,7 @@ css = require('react-css')
 uuid = require('uuid')
 _ = require('lodash')
 
-{ Tile, List, Raised, Subheader } = require('../../../../src/components')
+{ Tile, List, Raised, Subheader, TextField } = require('../../../../src/components')
 ControlTile = require('./ControlTile')
 
 build = require('../build')
@@ -88,6 +88,14 @@ module.exports = class Control extends React.Component
             <div style={ marginLeft: '16px', marginBottom: '16px' }>
               <Subheader color="#aaa"><div is="code">{ key }</div> - { propList[key].type }</Subheader>
               { looop(value, key) }
+              { if propList[key].type is 'string'
+                handleChange = (e, data) =>
+                  data = {}
+                  console.log data
+                  data[data] = e.target.value
+                  console.log data
+                  # @setState( data )
+                <TextField value={ @state[key] } data={ key } onChange={ handleChange } /> }
             </div>
           </div>
         else
