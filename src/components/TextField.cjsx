@@ -10,7 +10,7 @@ class TextField extends React.Component
   css: css.inline
 
   @propTypes = Control.enhance
-    type: Control.PropTypes.oneOf(['single-line']).example(['single-line'])
+    type: Control.PropTypes.oneOf(['single-line', 'floating-label']).example(['single-line', 'floating-label'])
     hint: Control.PropTypes.string.example([ 'Hint', 'Email', 'Location (optional)', 'Placeholder'])
     value: Control.PropTypes.string.example([ 'Input Text'])
     disabled: Control.PropTypes.bool.example([ false, true ])
@@ -35,7 +35,7 @@ class TextField extends React.Component
         border: 'none'
         height: '32px'
         boxShadow: ' 0 1px 0 0 #eee'
-        margin: '8px 0'
+        # margin: '8px 0'
         outline: 'none'
         fontSize: '15px'
         transition: 'box-shadow 100ms linear'
@@ -43,7 +43,7 @@ class TextField extends React.Component
     'focused':
       input:
         boxShadow: ' 0 3px 0 0 #2196f3'
-    
+
     # 'disabled':
     #   input:
     #     boxShadow: 'none'

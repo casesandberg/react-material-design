@@ -95,7 +95,10 @@ module.exports = class Control extends React.Component
                   data[data] = e.target.value
                   console.log data
                   # @setState( data )
-                <TextField value={ @state[key] } data={ key } onChange={ handleChange } /> }
+                <Tile condensed>
+                  <div />
+                  <TextField value={ @state[key] } data={ key } onChange={ handleChange } hint={ "#{ key } - #{ propList[key].type }" } />
+                </Tile> }
             </div>
           </div>
         else
