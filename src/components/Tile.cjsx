@@ -48,6 +48,9 @@ class Tile extends React.Component
         boxShadow: 'inset 0 -1px 0 rgba(0,0,0,.12)'
 
     'condensed':
+      tile:
+        paddingBottom: '0'
+        
       sidebar:
         minWidth: '28px'
         maxWidth: '28px'

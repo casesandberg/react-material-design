@@ -3,14 +3,11 @@
 React = require('react')
 css = require('react-css')
 uuid = require('uuid')
+_ = require('lodash')
 
 { Tile, List, Raised, Subheader } = require('../../../../src/components')
 ControlTile = require('./ControlTile')
-#
-#
-#
-# _ = require('lodash')
-#
+
 build = require('../build')
 
 
@@ -60,8 +57,16 @@ module.exports = class Control extends React.Component
         flexBasis: '250'
         overflowY: 'scroll'
 
-  styles: -> do @css
+      code:
+        display: 'inline-block'
+        background: '#E4E4E4'
+        padding: '4px 6px'
+        borderRadius: '4px'
+        fontSize: '14'
+        color: '#999'
+        boxShadow: 'inset 0 0 0 1px rgba(0,0,0,.07)'
 
+  styles: -> do @css
 
   componentWillMount: ->
     states = _.merge({}, @props.component.defaultProps, @props.presets['default'])
@@ -72,25 +77,7 @@ module.exports = class Control extends React.Component
 
 
   render: ->
-    names = []
-    for name, specComponent of @context.components
-      names.push(name)
-
-    runThrough = (obj) =>
-      for key, value of obj
-        if key is 'API'
-          <div key={ uuid.v4() }>
-            <Tile key={ key } color="#999">{ key }</Tile>
-            <div style={ paddingLeft: '15px' }>{ looop(value()) }</div>
-          </div>
-        else
-          if typeof value is 'function'
-            <Tile onClick={ value } key={ key }>{ key }</Tile>
-          else
-            <div key={ uuid.v4() }>
-              <Tile key={ key }>{ key }</Tile>
-              <div style={ paddingLeft: '15px' }>{ runThrough.call(@, value) }</div>
-            </div>
+    propList = @props.component?.propTypes?.controlProps?()
 
 
     looop = (obj, parent) =>
@@ -99,7 +86,7 @@ module.exports = class Control extends React.Component
         if _.isObject(value) and not _.isFunction(value)
           <div key={ uuid.v4() }>
             <div style={ marginLeft: '16px', marginBottom: '16px' }>
-              <Subheader code>{ key }</Subheader>
+              <Subheader color="#aaa"><div is="code">{ key }</div> - { propList[key].type }</Subheader>
               { looop(value, key) }
             </div>
           </div>
@@ -112,9 +99,9 @@ module.exports = class Control extends React.Component
 
       <div is="left">
         <List>
-          { for lable, i in names
+          { for lable of @context.components
               active = if lable is /function (.+)\(/.exec(@props.component.toString())[1] then true else false
-              <div key={ i } style={ color: if active then '#4A90E2' else '#666' }>
+              <div key={ lable } style={ color: if active then '#4A90E2' else '#666' }>
                 <Tile controls={ true } onClick={ (e, child) => @context.updateComponent(child) }>{ lable }</Tile>
               </div> }
         </List>
@@ -154,21 +141,14 @@ module.exports = class Control extends React.Component
 
         {### TODO:
          MAKE IT SO THINGS THAT ARENT REQUIRED HAVE A 'NONE' FIElD
-         ADD INPUT TYPE TO THE RIGHT OF THE PROP NAME
          ADD SOME SORT OF REQUIRED IMBELISHMENT FOR PROPS THAT ARE
         ###}
 
         <Tile>
           <Subheader>PROPS</Subheader>
         </Tile>
-        { looop(build.call(@, @props.component?.propTypes?.controlProps?())) }
+        { looop(build.call(@, propList)) }
 
-
-        {###<List>
-          { runThrough.call(@props.parent, @props.parent.describe())  }
-        </List>###}
-
-        { ###looop(build(@props.children.type.expectedProps)) ###}
       </div>
 
     </div>

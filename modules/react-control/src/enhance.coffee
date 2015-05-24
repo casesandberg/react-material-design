@@ -7,11 +7,15 @@ module.exports = (obj) ->
   for prop, propType of obj
 
     if propType.value
-      lookup[prop] = propType.examples
+      lookup[prop] =
+        type: propType.type
+        like: propType.examples
       newObj[prop] = React.PropTypes[propType.type](propType.examples)
 
     else
-      lookup[prop] = propType.examples
+      lookup[prop] =
+        type: propType.type
+        like: propType.examples
       newObj[prop] = React.PropTypes[propType.type]
 
   newObj.controlProps = -> lookup

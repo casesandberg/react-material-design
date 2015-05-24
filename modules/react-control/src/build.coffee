@@ -4,9 +4,9 @@ module.exports = (obj) ->
   for key, value of obj
     tree[key] = {}
 
-    if value.length
+    if value.like.length
 
-      for thing in value
+      for thing in value.like
         tree[key][thing] = (data) => @setState(data)
 
     else
