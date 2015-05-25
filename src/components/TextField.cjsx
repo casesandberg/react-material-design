@@ -27,7 +27,8 @@ class TextField extends React.Component
 
   classes: ->
     'default':
-      wrap: {}
+      wrap:
+        position: 'relative'
 
       input:
         background: 'none'
@@ -37,12 +38,25 @@ class TextField extends React.Component
         boxShadow: ' 0 1px 0 0 #eee'
         # margin: '8px 0'
         outline: 'none'
-        fontSize: '15px'
+        fontSize: '16px'
         transition: 'box-shadow 100ms linear'
+
+      floatingLabel:
+        fontSize: '16px'
+        color: '#aaa'
+        position: 'absolute'
+        top: '7px'
+        left: '1px'
+        transition: 'all 50ms linear'
 
     'focused':
       input:
-        boxShadow: ' 0 3px 0 0 #2196f3'
+        boxShadow: ' 0 2px 0 0 #2196f3'
+
+    'float-label':
+      floatingLabel:
+        fontSize: '12px'
+        transform: 'translateY(-20px)'
 
     # 'disabled':
     #   input:
@@ -51,10 +65,12 @@ class TextField extends React.Component
 
   styles: -> @css
     'focused': @state.focus
+    'float-label': @state.focus or @state.value?.length > 0
 
   handleChange: (e) =>
+    @setState( value: e.target.value )
+
     if @props.onChange?
-      @setState( value: e.target.value )
       @props.onChange(e, @props.data)
 
   handleFocus: (e) =>
@@ -65,7 +81,9 @@ class TextField extends React.Component
 
   render: ->
     <div is="wrap">
-      <input is="input" type="text" value={ @state.value } placeholder={ @props.hint } onChange={ @handleChange } onFocus={ @handleFocus } onBlur={ @handleFocus } disabled={ @props.disabled } />
+      <input is="input" type="text" value={ @state.value } placeholder={ @props.hint if @props.type isnt 'floating-label' } onChange={ @handleChange } onFocus={ @handleFocus } onBlur={ @handleFocus } disabled={ @props.disabled } />
+      { if @props.type is 'floating-label'
+          <div is="floatingLabel">{ @props.hint }</div> }
     </div>
 
 
