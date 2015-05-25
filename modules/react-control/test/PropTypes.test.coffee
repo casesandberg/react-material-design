@@ -1,6 +1,11 @@
 PropTypes = require('../src/PropTypes')
 expect = require('chai').expect
 
+# data = [{
+#     'type': 'single-line',
+#     'disabled': false,
+#     'hint': 'Hint'
+#   }, 'hint', 'TextField', 'prop']
 
 
 describe 'PropTypes', ->

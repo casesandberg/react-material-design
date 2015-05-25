@@ -35,16 +35,6 @@ PropTypes.oneOf().example = (array) ->
   value: @value
   examples: array
 
-# PropTypes.oneOf().example().done = (react, stuff, here, returnObj) ->
-#   if react or stuff or here
-#     console.log 'REACT'
-#
-#   else
-#     console.log 'RETURN'
-#
-#
-#   type: 'oneOf'
-#   value: true
-#   examples: ['foo']
+
 
 module.exports = PropTypes
