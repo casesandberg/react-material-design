@@ -33,14 +33,14 @@ class Button extends React.Component
         textTransform: 'uppercase'
         fontWeight: '500'
         WebkitFontSmoothing: 'antialiased'
-        color: @props.color
+        color: if @props.type is 'flat' then @props.color else 'rgba(255,255,255,.87)'
 
     'public':
-      button:
-        color: @props.color
+      # button:
+      #   color: @props.color
 
       Raised:
-        background: if @props.type isnt 'flat' then @props.background
+        background: if @props.type isnt 'flat' then @props.color
         zDepth: if @props.type is 'flat' then '0' else @props.zDepth
 
     'type-floating-action':
