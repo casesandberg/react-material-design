@@ -30,8 +30,15 @@ icons =
   'checkmark-marked-deconstructed': '<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
   	 width="18px" height="18px" viewBox="-290 388 18 18" enable-background="new -290 388 18 18" xml:space="preserve">
   <path d="M-283,402l-5-5l1.4-1.4l3.6,3.6l7.6-7.6l1.4,1.4"/>
-  </svg>
-'
+  </svg>'
+
+  'menu': '<svg style="width:24px;height:24px" viewBox="0 0 24 24">
+    <path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+</svg>'
+
+  'microphone': '<svg style="width:24px;height:24px" viewBox="0 0 24 24">
+    <path d="M12,2A3,3 0 0,1 15,5V11A3,3 0 0,1 12,14A3,3 0 0,1 9,11V5A3,3 0 0,1 12,2M19,11C19,14.53 16.39,17.44 13,17.93V21H11V17.93C7.61,17.44 5,14.53 5,11H7A5,5 0 0,0 12,16A5,5 0 0,0 17,11H19Z" />
+</svg>'
 
 
 class Icon extends React.Component

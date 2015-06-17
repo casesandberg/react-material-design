@@ -2,7 +2,7 @@
   "name": "react-material-design",
   "version": "0.0.0",
   "description": "1 part React to 2 parts Material Design. Mix.",
-  "main": "lib/index.coffee",
+  "main": "src/components/index.coffee",
   "scripts": {
     "start": "npm install; node ./node_modules/gulp/bin/gulp.js start"
   },

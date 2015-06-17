@@ -6,6 +6,8 @@ Control = require('react-control')
 require('../node_modules/normalize.css/normalize.css')
 specs = require('../src/specs')
 
+specs.GoogleMaps = require('../examples/google-maps/controls/GoogleMaps.control')
+
 
 
 React.render(
