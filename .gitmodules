@@ -1,0 +1,6 @@
+[submodule "modules/react-harness"]
+	path = modules/react-harness
+	url = https://github.com/casesandberg/react-harness
+[submodule "modules/reactcss"]
+	path = modules/reactcss
+	url = https://github.com/respondly/reactcss

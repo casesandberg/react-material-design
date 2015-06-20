@@ -36,6 +36,9 @@ var config = {
       ]
     },
     resolve: {
+      alias: {
+        'react-material-design': path.resolve(__dirname, './src/components/index.coffee')
+      },
       extensions: ['', '.js', '.coffee', '.cjsx'],
       fallback: [path.resolve(__dirname, './modules')]
     },
