@@ -2,7 +2,7 @@
 
 React = require('react')
 css = require('react-css')
-Control = require('react-control')
+Control = require('react-harness')
 
 
 
