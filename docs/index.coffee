@@ -1,7 +1,7 @@
 'use strict'
 
 React = require('react')
-Control = require('react-control')
+Control = require('react-harness')
 
 require('../node_modules/normalize.css/normalize.css')
 specs = require('../src/specs')

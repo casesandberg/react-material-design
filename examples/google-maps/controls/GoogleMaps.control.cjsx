@@ -3,7 +3,7 @@
 React = require('react')
 
 GoogleMaps = require('../components/GoogleMaps')
-Control = require('../../../modules/react-control/src/components/Control')
+Control = require('react-harness')
 
 
 

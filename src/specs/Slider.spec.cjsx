@@ -3,7 +3,7 @@
 React = require('react')
 
 { Slider } = require('../components')
-Control = require('../../modules/react-control/src/components/Control')
+Control = require('react-harness')
 
 
 

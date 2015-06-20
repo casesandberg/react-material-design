@@ -4,7 +4,7 @@ React = require('react')
 uuid = require('uuid')
 
 { Toolbar, Icon } = require('../components')
-Control = require('../../modules/react-control/src/components/Control')
+Control = require('react-harness')
 
 
 

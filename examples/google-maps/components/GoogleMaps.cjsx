@@ -3,7 +3,7 @@
 React = require('react')
 css = require('react-css')
 
-{ Raised, Tile } = require('../../../src/components')
+{ Raised, Tile } = require('react-material-design')
 
 
 
