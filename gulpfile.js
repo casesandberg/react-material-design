@@ -31,7 +31,7 @@ var config = {
           loaders: ['react-hot-loader', 'coffee-jsx-loader', 'react-map-styles']
         }, {
           test: /\.css$/,
-          loaders: ['css-loader']
+          loaders: [ 'style-loader', 'css-loader' ]
         }
       ]
     },
