@@ -16,7 +16,8 @@
     "coffee-script": "^1.9.2",
     "normalize.css": "^3.0.3",
     "react": "^0.13.3",
-    "uuid": "^2.0.1"
+    "uuid": "^2.0.1",
+    "reactcss": "git+https://git@github.com/Respondly/reactcss.git"
   },
   "devDependencies": {
     "coffee-jsx-loader": "^0.1.0",
@@ -30,6 +31,7 @@
     "node-libs-browser": "^0.5.0",
     "react-hot-loader": "^1.2.7",
     "webpack": "^1.9.5",
-    "webpack-dev-server": "^1.8.2"
+    "webpack-dev-server": "^1.8.2",
+    "react-map-styles": "git+https://git@github.com/Respondly/react-map-styles.git"
   }
 }
