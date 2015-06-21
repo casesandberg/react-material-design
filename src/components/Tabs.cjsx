@@ -5,6 +5,7 @@ css = require('reactcss')
 _ = require('lodash')
 
 Tab = require('./Tab')
+Link = require('./Link')
 
 
 context =
@@ -157,9 +158,12 @@ class Tabs extends React.Component
             else
               label = tab.label
               callback = tab.onClick
+
             <div is="tab" ref={ "tab-#{ i }" } key={ i }>
-              <Tab is="Tab" tab={ i } selected={ @state.selectedTab is i } onClick={ @handleClick }>{ label }</Tab>
-            </div> }
+              <Link onClick={ callback }>
+                <Tab is="Tab" tab={ i } selected={ @state.selectedTab is i } onClick={ @handleClick }>{ label }</Tab>
+              </Link>
+            </div>}
       </div>
       <div is="indicator" ref="indicator" />
     </div>
