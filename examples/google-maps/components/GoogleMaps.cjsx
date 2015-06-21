@@ -1,7 +1,7 @@
 'use strict'
 
 React = require('react')
-css = require('react-css')
+css = require('reactcss')
 
 { Raised, Tile } = require('react-material-design')
 

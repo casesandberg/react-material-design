@@ -1,7 +1,7 @@
 'use strict'
 
 React = require('react')
-css = require('react-css')
+css = require('reactcss')
 
 
 class Raised extends React.Component
