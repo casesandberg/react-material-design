@@ -14,10 +14,11 @@
   "license": "MIT",
   "dependencies": {
     "coffee-script": "^1.9.2",
+    "lodash": "^3.9.3",
     "normalize.css": "^3.0.3",
     "react": "^0.13.3",
-    "uuid": "^2.0.1",
-    "reactcss": "git+https://git@github.com/Respondly/reactcss.git"
+    "reactcss": "git+https://git@github.com/Respondly/reactcss.git",
+    "uuid": "^2.0.1"
   },
   "devDependencies": {
     "coffee-jsx-loader": "^0.1.0",

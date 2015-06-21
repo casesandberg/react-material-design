@@ -18,6 +18,18 @@ class TabsSpec extends React.Component
 
   presets:
     'default':
+      tabs: [
+        label: 'cool'
+        onClick: -> console.log 'cool'
+      ,
+        label: 'tabs'
+        onClick: -> console.log 'tabs'
+      ]
+      width: 340
+      align: 'justify'
+      background: context.primaryColor
+
+    'old':
       children: [ 'foo', 'bar', 'longer' ]
       width: 340
       align: 'justify'

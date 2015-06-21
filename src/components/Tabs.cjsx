@@ -2,6 +2,7 @@
 
 React = require('react')
 css = require('reactcss')
+_ = require('lodash')
 
 Tab = require('./Tab')
 
@@ -16,11 +17,21 @@ class Tabs extends React.Component
   css: css.inline
 
   @propTypes =
+    tabs: React.PropTypes.array
     align: React.PropTypes.oneOf(['none', 'justify', 'left', 'center'])
     children: React.PropTypes.array
     background: React.PropTypes.string
 
   @propExamples =
+    tabs:
+      type: 'array'
+      like: [[
+        label: 'cool'
+        callback: -> console.log 'cool'
+      ,
+        label: 'tabs'
+        callback: -> console.log 'tabs'
+      ]]
     align:
       type: 'oneOf'
       like: ['none', 'justify', 'left', 'center']
@@ -42,7 +53,7 @@ class Tabs extends React.Component
   constructor: (props) ->
     super props
     @state =
-      selectedTab: if @props.selectedTab < @props.children.length then @props.selectedTab else 0
+      selectedTab: if @props.selectedTab < @props.tabs?.length then @props.selectedTab else 0
 
   classes: ->
     'default':
@@ -86,7 +97,7 @@ class Tabs extends React.Component
         justifyContent: 'space-between'
 
       tab:
-        width: "#{ 100 / @props.children.length }%"
+        width: "#{ 100 / @props.tabs?.length }%"
 
     'align-left':
       tabWrap:
@@ -105,7 +116,7 @@ class Tabs extends React.Component
 
 
   styles: -> @css
-    'scrollable': @props.width / @props.children.length < 72
+    'scrollable': @props.width / @props.tabs?.length < 72
 
   handleClick: (tab) => @setState( selectedTab: tab )
 
@@ -131,17 +142,23 @@ class Tabs extends React.Component
   componentDidMount: -> @slide()
 
   componentWillUpdate: (nextProps, nextState) ->
-    if nextState.selectedTab >= nextProps.children.length
-      nextState.selectedTab = nextProps.children.length - 1
+    if nextState.selectedTab >= nextProps.tabs?.length
+      nextState.selectedTab = nextProps.tabs?.length - 1
 
   componentDidUpdate: -> @slide()
 
   render: ->
     <div is="tabs" ref="tabs">
       <div is="tabWrap">
-        { for child, i in @props.children
+        { for tab, i in @props.tabs
+            if _.isString(tab)
+              label = tab
+              callback = null
+            else
+              label = tab.label
+              callback = tab.onClick
             <div is="tab" ref={ "tab-#{ i }" } key={ i }>
-              <Tab is="Tab" tab={ i } selected={ @state.selectedTab is i } onClick={ @handleClick }>{ child }</Tab>
+              <Tab is="Tab" tab={ i } selected={ @state.selectedTab is i } onClick={ @handleClick }>{ label }</Tab>
             </div> }
       </div>
       <div is="indicator" ref="indicator" />
