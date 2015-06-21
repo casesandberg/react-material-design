@@ -2,7 +2,6 @@
 
 React = require('react')
 css = require('react-css')
-Control = require('react-harness')
 
 
 
@@ -44,8 +43,11 @@ icons =
 class Icon extends React.Component
   css: css.inline
 
-  @propTypes = Control.enhance
-    name: Control.PropTypes.string.example(['null', 'arrow-right', 'clock'])
+  @propTypes =
+    name: React.PropTypes.string
+
+  @propExamples =
+    name: ['null', 'arrow-right', 'clock']
 
   @defaultProps =
     fill: '#bbb'

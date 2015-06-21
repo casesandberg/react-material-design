@@ -2,7 +2,6 @@
 
 React = require('react')
 css = require('react-css')
-Control = require('react-harness')
 
 Tab = require('./Tab')
 
@@ -16,13 +15,13 @@ context =
 class Tabs extends React.Component
   css: css.inline
 
-  # @propTypes =
-  #   selectedTab: React.PropTypes.number
-  #   width: React.PropTypes.number
+  @propTypes =
+    align: React.PropTypes.oneOf(['undefined', 'left', 'center'])
+    children: React.PropTypes.array
 
-  @propTypes = Control.enhance
-    align: Control.PropTypes.oneOf(['undefined', 'left', 'center']).example(['undefined', 'left', 'center'])
-    children: Control.PropTypes.array.example([['cool', 'tabs'], ['foo', 'bar', 'longer'], ['foo', 'bar', 'way longer', 'even', 'still']])
+  @propExamples =
+    align: ['undefined', 'left', 'center']
+    children: [['cool', 'tabs'], ['foo', 'bar', 'longer'], ['foo', 'bar', 'way longer', 'even', 'still']]
 
   @defaultProps =
     selectedTab: 0

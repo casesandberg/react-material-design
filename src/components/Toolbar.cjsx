@@ -2,15 +2,17 @@
 
 React = require('react')
 css = require('react-css')
-Control = require('react-harness')
 
 
 
 class Toolbar extends React.Component
   css: css.inline
 
-  @propTypes = Control.enhance
-    align: Control.PropTypes.oneOf(['left', 'right', 'justify']).example(['left', 'right', 'justify'])
+  @propTypes =
+    align: React.PropTypes.oneOf(['left', 'right', 'justify'])
+
+  @propExamples =
+    align: ['left', 'right', 'justify']
 
   @defaultProps =
     align: 'left'

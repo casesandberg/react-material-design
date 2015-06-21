@@ -2,7 +2,6 @@
 
 React = require('react')
 css = require('react-css')
-Control = require('react-harness')
 
 Raised = require('./Raised')
 
@@ -11,11 +10,17 @@ Raised = require('./Raised')
 class Button extends React.Component
   css: css.inline
 
-  @propTypes = Control.enhance
-    type: Control.PropTypes.oneOf(['raised', 'flat', 'floating-action']).example(['raised', 'flat', 'floating-action'])
-    label: Control.PropTypes.string.example(['Button', 'Save \& Activate', 'Post to Facebook'])
-    background: Control.PropTypes.string.example(['#2196f3', '#aeee00', '#333'])
-    zDepth: Control.PropTypes.oneOf(['0', '1', '2', '3', '4', '5', 0, 1, 2, 3, 4, 5]).example(['0', '1', '2', '3', '4', '5'])
+  @propTypes =
+    type: React.PropTypes.oneOf(['raised', 'flat', 'floating-action'])
+    label: React.PropTypes.string
+    background: React.PropTypes.string
+    zDepth: React.PropTypes.oneOf(['0', '1', '2', '3', '4', '5', 0, 1, 2, 3, 4, 5])
+
+  @propExamples =
+    type: ['raised', 'flat', 'floating-action']
+    label: ['Button', 'Save \& Activate', 'Post to Facebook']
+    background: ['#2196f3', '#aeee00', '#333']
+    zDepth: ['0', '1', '2', '3', '4', '5']
 
   @defaultProps =
     type: 'raised'

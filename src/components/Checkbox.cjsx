@@ -2,7 +2,6 @@
 
 React = require('react')
 css = require('react-css')
-Control = require('react-harness')
 
 Icon = require('./Icon')
 
@@ -11,8 +10,11 @@ Icon = require('./Icon')
 class Checkbox extends React.Component
   css: css.inline
 
-  @propTypes = Control.enhance
-    marked: Control.PropTypes.bool.example([true, false])
+  @propTypes =
+    marked: React.PropTypes.bool
+
+  @propExamples =
+    marked: [true, false]
 
   @defaultProps =
     marked: false

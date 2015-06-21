@@ -2,18 +2,23 @@
 
 React = require('react')
 css = require('react-css')
-Control = require('react-harness')
 
 
 
 class TextField extends React.Component
   css: css.inline
 
-  @propTypes = Control.enhance
-    type: Control.PropTypes.oneOf(['single-line', 'floating-label']).example(['single-line', 'floating-label'])
-    hint: Control.PropTypes.string.example([ 'Hint', 'Email', 'Location (optional)', 'Placeholder'])
-    value: Control.PropTypes.string.example([ 'Input Text'])
-    disabled: Control.PropTypes.bool.example([ false, true ])
+  @propTypes =
+    type: React.PropTypes.oneOf(['single-line', 'floating-label'])
+    hint: React.PropTypes.string
+    value: React.PropTypes.string
+    disabled: React.PropTypes.bool
+
+  @propExamples =
+    type: ['single-line', 'floating-label']
+    hint: [ 'Hint', 'Email', 'Location (optional)', 'Placeholder']
+    value: [ 'Input Text']
+    disabled: [ false, true ]
 
   @defaultProps =
     type: 'single-line'

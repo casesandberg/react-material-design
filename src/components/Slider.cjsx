@@ -2,7 +2,6 @@
 
 React = require('react')
 css = require('react-css')
-Control = require('react-harness')
 
 Icon = require('./Icon')
 
@@ -11,8 +10,11 @@ Icon = require('./Icon')
 class Slider extends React.Component
   css: css.inline
 
-  @propTypes = Control.enhance
-    type: Control.PropTypes.string.example(['continuous', 'discrete'])
+  @propTypes =
+    type: React.PropTypes.string
+
+  @propExamples =
+    type: ['continuous', 'discrete']
 
   @defaultProps =
     type: 'continuous'
