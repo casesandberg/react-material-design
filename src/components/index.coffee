@@ -2,6 +2,7 @@ module.exports =
   Button: require('./Button')
   Icon: require('./Icon')
   List: require('./List')
+  Link: require('./Link')
   Raised: require('./Raised')
   Tile: require('./Tile')
   Toolbar: require('./Toolbar')
