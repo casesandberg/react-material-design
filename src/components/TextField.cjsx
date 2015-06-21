@@ -15,10 +15,18 @@ class TextField extends React.Component
     disabled: React.PropTypes.bool
 
   @propExamples =
-    type: ['single-line', 'floating-label']
-    hint: [ 'Hint', 'Email', 'Location (optional)', 'Placeholder']
-    value: [ 'Input Text']
-    disabled: [ false, true ]
+    type:
+      type: 'oneOf'
+      like: ['single-line', 'floating-label']
+    hint:
+      type: 'string'
+      like: [ 'Hint', 'Email', 'Location (optional)', 'Placeholder']
+    value:
+      type: 'string'
+      like: [ 'Input Text']
+    disabled:
+      type: 'bool'
+      like: [ false, true ]
 
   @defaultProps =
     type: 'single-line'

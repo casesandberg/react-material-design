@@ -20,8 +20,12 @@ class Tabs extends React.Component
     children: React.PropTypes.array
 
   @propExamples =
-    align: ['undefined', 'left', 'center']
-    children: [['cool', 'tabs'], ['foo', 'bar', 'longer'], ['foo', 'bar', 'way longer', 'even', 'still']]
+    align:
+      type: 'oneOf'
+      like: ['undefined', 'left', 'center']
+    children:
+      type: 'array'
+      like: [['cool', 'tabs'], ['foo', 'bar', 'longer'], ['foo', 'bar', 'way longer', 'even', 'still']]
 
   @defaultProps =
     selectedTab: 0

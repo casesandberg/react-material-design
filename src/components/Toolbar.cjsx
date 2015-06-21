@@ -12,7 +12,9 @@ class Toolbar extends React.Component
     align: React.PropTypes.oneOf(['left', 'right', 'justify'])
 
   @propExamples =
-    align: ['left', 'right', 'justify']
+    align:
+      type: 'oneOf'
+      like: ['left', 'right', 'justify']
 
   @defaultProps =
     align: 'left'

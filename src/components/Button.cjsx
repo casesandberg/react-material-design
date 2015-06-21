@@ -17,10 +17,18 @@ class Button extends React.Component
     zDepth: React.PropTypes.oneOf(['0', '1', '2', '3', '4', '5', 0, 1, 2, 3, 4, 5])
 
   @propExamples =
-    type: ['raised', 'flat', 'floating-action']
-    label: ['Button', 'Save \& Activate', 'Post to Facebook']
-    background: ['#2196f3', '#aeee00', '#333']
-    zDepth: ['0', '1', '2', '3', '4', '5']
+    type:
+      type: 'oneOf'
+      like: ['raised', 'flat', 'floating-action']
+    label:
+      type: 'string'
+      like: ['Button', 'Save \& Activate', 'Post to Facebook']
+    background:
+      type: 'string'
+      like: ['#2196f3', '#aeee00', '#333']
+    zDepth:
+      type: 'oneOf'
+      like: ['0', '1', '2', '3', '4', '5']
 
   @defaultProps =
     type: 'raised'

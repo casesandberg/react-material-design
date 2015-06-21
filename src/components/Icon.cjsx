@@ -47,7 +47,9 @@ class Icon extends React.Component
     name: React.PropTypes.string
 
   @propExamples =
-    name: ['null', 'arrow-right', 'clock']
+    name:
+      type: 'string'
+      like: ['null', 'arrow-right', 'clock']
 
   @defaultProps =
     fill: '#bbb'

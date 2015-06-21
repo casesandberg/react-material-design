@@ -14,7 +14,9 @@ class Slider extends React.Component
     type: React.PropTypes.string
 
   @propExamples =
-    type: ['continuous', 'discrete']
+    type:
+      type: 'string'
+      like: ['continuous', 'discrete']
 
   @defaultProps =
     type: 'continuous'
