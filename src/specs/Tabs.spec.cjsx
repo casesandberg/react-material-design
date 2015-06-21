@@ -20,7 +20,8 @@ class TabsSpec extends React.Component
     'default':
       children: [ 'foo', 'bar', 'longer' ]
       width: 340
-      align: undefined
+      align: 'justify'
+      background: context.primaryColor
 
     'left desktop':
       children: [ 'foo', 'bar', 'way longer' ]
@@ -28,7 +29,7 @@ class TabsSpec extends React.Component
       align: 'left'
 
   render: ->
-    <Control component={ Tabs } wrapper={[ Raised, {background: context.primaryColor, square: true} ]} presets={ @presets } />
+    <Control component={ Tabs } presets={ @presets } />
 
 
 

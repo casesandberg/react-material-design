@@ -16,19 +16,28 @@ class Tabs extends React.Component
   css: css.inline
 
   @propTypes =
-    align: React.PropTypes.oneOf(['undefined', 'left', 'center'])
+    align: React.PropTypes.oneOf(['none', 'justify', 'left', 'center'])
     children: React.PropTypes.array
+    background: React.PropTypes.string
 
   @propExamples =
     align:
       type: 'oneOf'
-      like: ['undefined', 'left', 'center']
+      like: ['none', 'justify', 'left', 'center']
     children:
       type: 'array'
       like: [['cool', 'tabs'], ['foo', 'bar', 'longer'], ['foo', 'bar', 'way longer', 'even', 'still']]
+    background:
+      type: 'string'
+      like: ['transparent', '#4A90E2']
+    color:
+      type: 'string'
+      like: ['#fff', '#FFEB3B']
 
   @defaultProps =
     selectedTab: 0
+    background: 'transparent'
+    color: '#fff'
 
   constructor: (props) ->
     super props
@@ -39,30 +48,26 @@ class Tabs extends React.Component
     'default':
       tabs:
         position: 'relative'
+        background: @props.background
 
       tabWrap:
         display: 'flex'
-        justifyContent: 'space-between'
 
       tab:
-        width: "#{ 100 / @props.children.length }%"
+        justifyContent: 'flex-start'
         minWidth: '68px'
         maxWidth: '240px'
+
+      Tab:
+        color: @props.color
 
       indicator:
         height: '2px'
         position: 'absolute'
         bottom: '0'
         left: '0'
-        background: if context.theme is 'dark' then 'rgba(0,0,0,.87)' else if context.theme is 'light' then 'rgba(255,255,255,.87)'
+        background: @props.color
         transition: 'all 200ms linear'
-
-    'public':
-      indicator: {}
-        # background: @props.style?.indicatorColor
-
-      Tab: {}
-        # activeColor: @props.style?.activeLabelColor
 
     'scrollable':
       tabs:
@@ -75,6 +80,13 @@ class Tabs extends React.Component
 
       tab:
         width: 'auto'
+
+    'align-justify':
+      tabWrap:
+        justifyContent: 'space-between'
+
+      tab:
+        width: "#{ 100 / @props.children.length }%"
 
     'align-left':
       tabWrap:
