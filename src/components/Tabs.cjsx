@@ -158,9 +158,10 @@ class Tabs extends React.Component
             else
               label = tab.label
               callback = tab.onClick
+              newTab = tab.newTab
 
             <div is="tab" ref={ "tab-#{ i }" } key={ i }>
-              <Link onClick={ callback }>
+              <Link onClick={ callback } newTab={ newTab }>
                 <Tab is="Tab" tab={ i } selected={ @state.selectedTab is i } onClick={ @handleClick }>{ label }</Tab>
               </Link>
             </div>}
