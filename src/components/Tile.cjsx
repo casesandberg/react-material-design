@@ -12,7 +12,7 @@ class Tile extends React.Component
     'default':
       tile:
         fontSize: '16px'
-        padding: '16px 0 16px 16px'
+        padding: '16px'
         display: 'flex'
         justifyContent: 'space-between'
         color: @props.color
@@ -29,6 +29,7 @@ class Tile extends React.Component
       content:
         background: 'none'
         alignSelf: 'center'
+        flex: '1'
 
       secondary:
         flexBasis: '42'
@@ -50,7 +51,7 @@ class Tile extends React.Component
     'condensed':
       tile:
         paddingBottom: '0'
-        
+
       sidebar:
         minWidth: '28px'
         maxWidth: '28px'
