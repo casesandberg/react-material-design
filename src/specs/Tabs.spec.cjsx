@@ -28,6 +28,7 @@ class TabsSpec extends React.Component
       width: 340
       align: 'justify'
       background: context.primaryColor
+      selectedTab: 1
 
     'old':
       children: [ 'foo', 'bar', 'longer' ]

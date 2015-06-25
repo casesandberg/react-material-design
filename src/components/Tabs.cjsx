@@ -79,7 +79,8 @@ class Tabs extends React.Component
         bottom: '0'
         left: '0'
         background: @props.color
-        transition: 'all 200ms linear'
+        transition: 'all 200ms linear, transform 100ms 300ms linear'
+        transform: 'translateY(2px)'
 
     'scrollable':
       tabs:
@@ -139,6 +140,7 @@ class Tabs extends React.Component
     # slide the indicator
     @refs.indicator.getDOMNode().style.left = selectedLeft
     @refs.indicator.getDOMNode().style.width = selectedNode.offsetWidth
+    @refs.indicator.getDOMNode().style.transform = 'translateY(0)'
 
   componentDidMount: -> @slide()
 
