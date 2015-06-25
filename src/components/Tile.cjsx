@@ -28,7 +28,6 @@ class Tile extends React.Component
 
       content:
         background: 'none'
-        alignSelf: 'center'
         flex: '1'
 
       secondary:
