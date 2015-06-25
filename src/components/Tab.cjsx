@@ -48,7 +48,7 @@ class Tab extends React.Component
   styles: -> @css()
 
 
-  handleClick: => @props.onClick(@props.tab)
+  handleClick: => @props.onClick(@props.tab) if @props.selectable isnt false
 
   render: ->
     <div is="tab" onClick={ @handleClick }>{ @props.children }</div>

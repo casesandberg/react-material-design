@@ -28,16 +28,44 @@ class TabsSpec extends React.Component
       width: 340
       align: 'justify'
       background: context.primaryColor
+
+    'second not selectable':
+      tabs: [
+        label: 'cool'
+        onClick: -> console.log 'cool'
+      ,
+        label: 'tabs'
+        onClick: -> console.log 'tabs'
+        selectable: false
+      ,
+        label: 'bar'
+        onClick: -> console.log 'bar'
+      ]
+      width: 340
+      align: 'justify'
+      background: context.primaryColor
+
+    'second selected':
+      tabs: [
+        label: 'cool'
+        onClick: -> console.log 'cool'
+      ,
+        label: 'tabs'
+        onClick: -> console.log 'tabs'
+      ]
+      width: 340
+      align: 'justify'
+      background: context.primaryColor
       selectedTab: 1
 
-    'old':
-      children: [ 'foo', 'bar', 'longer' ]
+    'three (mobile)':
+      tabs: [ 'foo', 'bar', 'longer' ]
       width: 340
       align: 'justify'
       background: context.primaryColor
 
     'left desktop':
-      children: [ 'foo', 'bar', 'way longer' ]
+      tabs: [ 'foo', 'bar', 'way longer' ]
       width: 640
       align: 'left'
 

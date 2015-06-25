@@ -32,13 +32,12 @@ class Tabs extends React.Component
       ,
         label: 'tabs'
         callback: -> console.log 'tabs'
-      ]]
+      ],
+      ['cool', 'tabs'], ['foo', 'bar', 'longer'], ['foo', 'bar', 'way longer', 'even', 'still']
+      ]
     align:
       type: 'oneOf'
       like: ['none', 'justify', 'left', 'center']
-    children:
-      type: 'array'
-      like: [['cool', 'tabs'], ['foo', 'bar', 'longer'], ['foo', 'bar', 'way longer', 'even', 'still']]
     background:
       type: 'string'
       like: ['transparent', '#4A90E2']
@@ -164,7 +163,7 @@ class Tabs extends React.Component
 
             <div is="tab" ref={ "tab-#{ i }" } key={ i }>
               <Link onClick={ callback } newTab={ newTab }>
-                <Tab is="Tab" tab={ i } selected={ @state.selectedTab is i } onClick={ @handleClick }>{ label }</Tab>
+                <Tab is="Tab" tab={ i } selected={ @state.selectedTab is i } selectable={ tab.selectable } onClick={ @handleClick }>{ label }</Tab>
               </Link>
             </div>}
       </div>
