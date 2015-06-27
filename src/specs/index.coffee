@@ -2,6 +2,7 @@ module.exports =
   Button: require('./Button.spec')
   # Tile: require('./Tile.spec')
   Icon: require('./Icon.spec')
+  Ink: require('./Ink.spec')
   Link: require('./Link.spec')
   Toolbar: require('./Toolbar.spec')
   List: require('./List.spec')
