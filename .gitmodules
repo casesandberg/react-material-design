@@ -3,4 +3,4 @@
 	url = https://github.com/casesandberg/react-harness
 [submodule "modules/reactcss"]
 	path = modules/reactcss
-	url = https://github.com/respondly/reactcss
+	url = https://github.com/casesandberg/reactcss
