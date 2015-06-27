@@ -32,6 +32,10 @@ module.exports = class Ink extends React.Component
       ripple:
         background: 'rgba(0,0,0,.1)'
 
+    'color-light':
+      ripple:
+        background: 'rgba(255,255,255,.05)'
+
   styles: -> @css()
 
 
