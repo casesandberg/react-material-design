@@ -6,6 +6,7 @@ _ = require('lodash')
 
 Tab = require('./Tab')
 Link = require('./Link')
+Ink = require('./Ink')
 
 
 context =
@@ -162,9 +163,11 @@ class Tabs extends React.Component
               newTab = tab.newTab
 
             <div is="tab" ref={ "tab-#{ i }" } key={ i }>
-              <Link onClick={ callback } newTab={ newTab }>
-                <Tab is="Tab" tab={ i } selected={ @state.selectedTab is i } selectable={ tab.selectable } onClick={ @handleClick }>{ label }</Tab>
-              </Link>
+              <Ink color={ context.theme }>
+                <Link onClick={ callback } newTab={ newTab }>
+                  <Tab is="Tab" tab={ i } selected={ @state.selectedTab is i } selectable={ tab.selectable } onClick={ @handleClick }>{ label }</Tab>
+                </Link>
+              </Ink>
             </div>}
       </div>
       <div is="indicator" ref="indicator" />
