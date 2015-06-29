@@ -50,6 +50,7 @@ class Tile extends React.Component
     'condensed':
       tile:
         paddingBottom: '0'
+        paddingTop: '0'
 
       sidebar:
         minWidth: '28px'
