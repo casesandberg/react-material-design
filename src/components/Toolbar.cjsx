@@ -47,7 +47,7 @@ class Toolbar extends React.Component
   render: ->
 
 
-    <div is="toolbar">
+    <div is="toolbar" className="flex-fix">
       { for child, i in @props.children
           <div is="item" key={ i }>
             { child }
