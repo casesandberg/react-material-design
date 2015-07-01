@@ -69,7 +69,7 @@ class Tile extends React.Component
 
       { if Object.prototype.toString.call(@props.children) is '[object Array]'
           [ sidebar, content... ] = @props.children
-          <div is="primary">
+          <div is="primary" className="flexbox-fix">
             <div is="sidebar" key={ "sidebar-#{ sidebar }" }>
               { if sidebar.type.name is 'Icon'
                   <div is="sidebarIcon">
