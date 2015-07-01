@@ -152,7 +152,7 @@ class Tabs extends React.Component
 
   render: ->
     <div is="tabs" ref="tabs">
-      <div is="tabWrap" className="flex-fix">
+      <div is="tabWrap" className="flexbox-fix">
         { for tab, i in @props.tabs
             if _.isString(tab)
               label = tab
