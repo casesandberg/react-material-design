@@ -17,7 +17,7 @@
     "lodash": "^3.9.3",
     "normalize.css": "^3.0.3",
     "react": "^0.13.3",
-    "reactcss": "git+https://git@github.com/Respondly/reactcss.git",
+    "reactcss": "^0.3.2",
     "uuid": "^2.0.1"
   },
   "devDependencies": {
